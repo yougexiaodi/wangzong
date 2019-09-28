@@ -117,7 +117,7 @@
         this.$http.post(this.loginStateWx, {pid: sessionStorage.getItem('pid')})
           .then((res) => {
             if (res.data.status !== 0) {
-              let url = this.loginStateWx + '?pid=' + sessionStorage.getItem('pid') + '&wx_id=2' + '&back_url=' + encodeURIComponent('/boc/guizhou/#/coupon')
+              let url = this.loginStateWx + '?pid=' + sessionStorage.getItem('pid') + '&wx_id=2' + '&back_url=' + encodeURIComponent('/boc/guizhouekh/#/coupon')
               window.location.href = url
             } else {
               this.getDataDetails()

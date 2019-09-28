@@ -148,7 +148,7 @@
         this.$http.post(this.loginStateWx, {pid: sessionStorage.getItem('pid')})
           .then((res) => {
             if (res.data.status !== 0) {
-              let url = this.loginStateWx + '?pid=' + sessionStorage.getItem('pid') + '&wx_id=2' + '&back_url=' + encodeURIComponent('/boc/guizhou/#/details?id=' + this.id)
+              let url = this.loginStateWx + '?pid=' + sessionStorage.getItem('pid') + '&wx_id=2' + '&back_url=' + encodeURIComponent('/boc/guizhouekh/#/details?id=' + this.id)
               window.location.href = url
             } else {
               this.$vux.loading.hide()
@@ -192,7 +192,6 @@
         }, 1000)
       },
       onConfirm4() {
-        let randomTime = Math.floor(Math.random() * 10) * 1000
         this.show4 = false
         if (this.payment === '1') {
           const _this = this
@@ -205,13 +204,9 @@
                 transition: '',
                 text: '订单生成中'
               })
-              setTimeout(() => {
-                _this.$vux.loading.hide()
-              }, randomTime)
-              setTimeout(() => {
-                let url = _this.buyUrl + '?pid=' + _this.pid + '&gid=' + _this.id + '&code_type=' + _this.$route.query.code_type + '&back_url=' + encodeURIComponent('/boc/guizhou/#/details?id=' + _this.id + '&code_type=' + _this.$route.query.code_type)
-                window.location.href = url
-              }, randomTime)
+
+              let url = _this.buyUrl + '?pid=' + _this.pid + '&gid=' + _this.id + '&code_type=' + _this.$route.query.code_type + '&back_url=' + encodeURIComponent('/boc/guizhouekh/#/details?id=' + _this.id + '&code_type=' + _this.$route.query.code_type)
+              window.location.href = url
             }
           })
         } else if (this.payment === '2') {
@@ -224,13 +219,8 @@
                 transition: '',
                 text: '订单生成中'
               })
-              setTimeout(() => {
-                _this.$vux.loading.hide()
-              }, randomTime)
-              setTimeout(() => {
-                let url = '/wxPay' + '?pid=' + _this.pid + '&mid=' + _this.mid + '&gid=' + _this.id +  '&code_type=' + _this.$route.query.code_type + '&back_url=' + encodeURIComponent('/boc/guizhou/#/details?id=' + _this.id + '&code_type=' + _this.$route.query.code_type)
-                window.location.href = url
-              }, randomTime)
+              let url = '/wxPay' + '?pid=' + _this.pid + '&mid=' + _this.mid + '&gid=' + _this.id +  '&code_type=' + _this.$route.query.code_type + '&back_url=' + encodeURIComponent('/boc/guizhouekh/#/details?id=' + _this.id + '&code_type=' + _this.$route.query.code_type)
+              window.location.href = url
             }
           })
         } else {
