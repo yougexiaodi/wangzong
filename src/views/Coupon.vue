@@ -29,7 +29,7 @@
               <p v-show="vm.state === '2'">使用时间：{{vm.use_time}}</p>
               <p v-show="vm.state === '3'">退款时间：{{vm.refund_time}}</p>
               <div v-show="vm.pay_state === '0'" style="padding-bottom:5px;">
-                <x-button mini :gradients="['#FF5E3A', '#FF9500']" @click.native="buyCoupon(vm.gid, vm.order_id)">付款
+                <x-button mini :gradients="['#FF5E3A', '#FF9500']" @click.native="buyCoupon(vm.gid, vm.order_id, vm.pay_type)">付款
                 </x-button>
                 <x-button style="margin-left: 30%;" mini @click.native="cancelOrder(vm.id)">取消</x-button>
               </div>
@@ -247,22 +247,22 @@
           }
         })
       },
-      buyCoupon(id, orderId) {
+      buyCoupon(id, orderId,pay_type) {
         this.gid = id
         this.order_id = orderId
-        this.show4 = true
-        // this.onConfirm4()
+        // this.show4 = true
+        this.onConfirm4(pay_type)
       },
-      onConfirm4() {
-        this.show4 = false
-        if (this.payment === '1') {
+      onConfirm4(pay_type) {
+        // this.show4 = false
+        if (pay_type === '2') {
           this.$vux.loading.show({
             transition: '',
             text: '请稍后'
           })
           this.$vux.loading.hide()
           window.location.href = this.payUrl + '?pid=' + sessionStorage.getItem('pid') + '&order_id=' + this.order_id + '&back_url=' + encodeURIComponent('/coupon?pid=' + sessionStorage.getItem('pid'))
-        } else if (this.payment === '2') {
+        } else if (pay_type === '1') {
           this.$vux.loading.show({
             transition: '',
             text: '请稍后'
