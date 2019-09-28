@@ -1,8 +1,13 @@
 <template>
   <div style="background:#f1f1f1;">
-    <div class="top_logo">
-      <!-- <img src="../assets/img/banner.png" width="100%"> -->
-      <img src="../assets/img/rules.png" width="96%">
+<!--    <div class="top_logo">-->
+<!--      &lt;!&ndash; <img src="../assets/img/banner.png" width="100%"> &ndash;&gt;-->
+<!--      <img src="../assets/img/rules.png" width="96%">-->
+<!--    </div>-->
+    <div class="details">
+      <div><span>活动时间:&nbsp;&nbsp;</span>2019年9月30日-10月7日</div>
+      <div><span>活动对象:&nbsp;&nbsp;</span>中国银行信用卡客户</div>
+      <div><span>活动内容:&nbsp;&nbsp;</span>活动期间，中国银行信用卡客户可在活动期间抢购逸天城美食优惠代金券，使用中国银行信用卡通过“中国银行贵州分行”微信公众号，选择中行信用卡付款，付款完成后持电子券到逸天城2F顾客服务中心兑换商场纸质代金券，到指定商户门店使用，每日名额有限，先到先得。券码在活动期间内有效。</div>
     </div>
     <div style="margin-bottom: 20px;">
       <div class="yn_list" v-for="vm in dataInfo" :key="vm.id">
@@ -70,6 +75,27 @@
 </script>
 
 <style>
+
+    .details {
+        font-size: 13px;
+        margin: 10px;
+        margin-top: 0;
+        background-color: #ffffff;
+        padding: 14px;
+        border-radius: 10px;
+        border: 2px solid #cccccc;
+        color: #001012;
+        line-height: 1.2;
+    }
+
+    .details > div {
+        font-weight: 700;
+    }
+
+    .details > div > span {
+        font-weight: 700;
+        color: #7d0022;
+    }
 
   .top_logo {
     text-align: center;

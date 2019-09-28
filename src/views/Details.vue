@@ -116,7 +116,7 @@
               this.price = res.data.info.price.split('.')[0]
               this.now_num = res.data.info.now_num
               this.sale_num = res.data.info.sale_num
-              this.backImg = res.data.info.detail_img
+              this.backImg = res.data.info.list_img
               this.mid = res.data.info.mid
               if (this.$route.query.err !== undefined) {
                 this.$vux.toast.show({
