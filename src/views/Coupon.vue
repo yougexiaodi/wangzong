@@ -33,9 +33,9 @@
                 </x-button>
                 <x-button style="margin-left: 30%;" mini @click.native="cancelOrder(vm.id)">取消</x-button>
               </div>
-              <!-- <x-button :disabled="onRefund" v-show="vm.state === '1'" mini :gradients="['#FF2719', '#FF61AD']"
+               <x-button :disabled="onRefund" v-show="vm.state === '1'" mini :gradients="['#FF2719', '#FF61AD']"
                         @click.native="refund(vm.order_id)">退款
-              </x-button> -->
+              </x-button>
             </div>
             <div v-show="vm.state === '0'" class="superscript-4"><i>未支付</i></div>
             <div v-show="vm.state === '1'" class="superscript-1"><i>未使用</i></div>
