@@ -273,7 +273,7 @@
           },
             {
                 url:'https://gdecard.jiahuaming.com/details?id=461',
-                title:'百货消费|刷卡支付满700减70',
+                title:'国贸百货消费|刷卡支付满700减70',
                 img:require('@/assets/img/banner-home-2.png')
             },
             {
