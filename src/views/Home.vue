@@ -150,16 +150,16 @@
         <span class="ecard-font" style="color:#3b3b3b;margin-left:.5rem">—</span>
       </group-title>
       <div class="areaswiper-box area" style="margin: 0 auto 10px;">
-        <div class="swiper-wrapper" style="margin: 20px 0 25px;">
-          <div class="swiper-slide" v-for="(item,index) in areaList" :key="index">
+        <swiper  auto  class="swiper-wrapper custom-hsq" style="margin: 20px 0 25px;">
+          <swiper-item class="swiper-slide swiper-demo-img" v-for="(item,index) in areaList" :key="index">
             <!-- <router-link :to="item.url"> -->
             <a :href="item.url">
               <img :src="item.img" class="full-img" alt="">
             </a>
             <!-- </router-link> -->
             <p class="wrap-text">{{item.title}}</p>
-          </div>
-        </div>
+          </swiper-item>
+        </swiper>
       </div>      
     </group>
     <group :gutter="5">
@@ -270,7 +270,17 @@
             url:'http://gdecard.jiahuaming.com/boc/guizhouekh/#/pay',
             title:'逸天城活动',
             img:require('@/assets/img/area.png')
-          }
+          },
+            {
+                url:'https://gdecard.jiahuaming.com/details?id=461',
+                title:'百货消费|刷卡支付满700减70',
+                img:require('@/assets/img/banner-home-2.png')
+            },
+            {
+                url:'https://gdecard.jiahuaming.com/details?id=462',
+                title:'百盛购物|刷卡支付满499元减50元',
+                img:require('@/assets/img/banner-home-2.png')
+            }
         ],
         showPass: true,
         oWidth: document.body.clientWidth * 0.8,
@@ -356,7 +366,11 @@
           this.TipsShow()
         } else {
         //   window.location.href = item.url
-         this.$router.push({path:'/pay'})
+            if(item.href.indexOf("http")!==-1){
+                window.location.href="";
+            }else {
+                this.$router.push({path:item.href})
+            }
         }
       },
       tabDay (index) {
@@ -466,7 +480,11 @@
     transform: translateX(8px) scale(1) !important;
      /*transform: translateX(5px) scale(1.1); */
   }
-  
+
+  .custom-hsq .vux-swiper{
+        width: 100%;
+    }
+
   body {
     background: #f5f4f4 !important;
   }
