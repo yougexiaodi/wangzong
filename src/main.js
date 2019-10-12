@@ -26,40 +26,40 @@ const wx = Vue.wechat
 const http = Vue.http
 
 if (process.env.NODE_ENV === 'production') {
-  wx.ready(() => {
-    wx.onMenuShareAppMessage({
-      title: '惠聚中行日', // 分享标题
-      desc: '中国银行信用卡客户专享',
-      link: 'http://gdecard.jiahuaming.com/boc/guizhouekh/#/',
-      imgUrl: 'http://gdecard.jiahuaming.com/boc/guizhouekh/images/area_b.png'
-    })
+    wx.ready(() => {
+        wx.onMenuShareAppMessage({
+            title: '惠聚中行日', // 分享标题
+            desc: '中国银行信用卡客户专享',
+            link: 'http://gdecard.jiahuaming.com/boc/guizhouekh/#/',
+            imgUrl: 'http://gdecard.jiahuaming.com/boc/guizhouekh/images/area_b.png'
+        })
 
-    wx.onMenuShareTimeline({
-      title: '惠聚中行日', // 分享标题
-      desc: '中国银行信用卡客户专享',
-      link: 'http://gdecard.jiahuaming.com/boc/guizhouekh/#/',
-      imgUrl: 'http://gdecard.jiahuaming.com/boc/guizhouekh/images/area_b.png'
+        wx.onMenuShareTimeline({
+            title: '惠聚中行日', // 分享标题
+            desc: '中国银行信用卡客户专享',
+            link: 'http://gdecard.jiahuaming.com/boc/guizhouekh/#/',
+            imgUrl: 'http://gdecard.jiahuaming.com/boc/guizhouekh/images/area_b.png'
+        })
     })
-  })
-  // const permissions = JSON.stringify(['onMenuShareTimeline', 'onMenuShareAppMessage', 'chooseWXPay'])
-  const url = document.location.href
-  http.post('/api/gdekhback/phone/get_wx_sign.html', {url: encodeURIComponent(url), wx_id: 2})
-    .then(res => {
-      wx.config({
-        debug: false,
-        appId: res.data.info.appId,
-        timestamp: res.data.info.timestamp,
-        nonceStr: res.data.info.nonceStr,
-        signature: res.data.info.signature,
-        jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage', 'chooseWXPay']
-      })
-    })
+    // const permissions = JSON.stringify(['onMenuShareTimeline', 'onMenuShareAppMessage', 'chooseWXPay'])
+    const url = document.location.href
+    http.post('/api/gdekhback/phone/get_wx_sign.html', {url: encodeURIComponent(url), wx_id: 2})
+        .then(res => {
+            wx.config({
+                debug: false,
+                appId: res.data.info.appId,
+                timestamp: res.data.info.timestamp,
+                nonceStr: res.data.info.nonceStr,
+                signature: res.data.info.signature,
+                jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage', 'chooseWXPay']
+            })
+        })
 }
 
 /* eslint-disable no-new */
 new Vue({
-  el: '#app',
-  router,
-  components: { App },
-  template: '<App/>'
+    el: '#app',
+    router,
+    components: {App},
+    template: '<App/>'
 })
