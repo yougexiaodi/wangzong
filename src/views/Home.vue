@@ -367,10 +367,10 @@
                     this.TipsShow()
                 } else {
                     //   window.location.href = item.url
-                    if (item.href.indexOf("http") !== -1) {
+                    if (item.url.indexOf("http") !== -1) {
                         window.location.href = "";
                     } else {
-                        this.$router.push({path: item.href})
+                        this.$router.push({path: item.url})
                     }
                 }
             },
