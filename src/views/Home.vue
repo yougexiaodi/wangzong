@@ -394,7 +394,7 @@
             getBannerList() {
                 this.$http.post(this.getDataUrl, {pid: this.pid})
                     .then((res) => {
-                        // this.bannerList = res.data.info[1]
+                        this.bannerList = res.data.info[1]
                         // for (let i = 0; i < res.data.info[1].length; i++) {
                         //   if (res.data.info[1][i].url === '') {
                         //     this.bannerList[i].url = '/details?id=' + res.data.info[1][i].id

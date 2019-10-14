@@ -9,6 +9,10 @@
                 <p style="color:#bb012d">{{price}}元</p>
             </cell>
             <cell v-if="id === '1073'" title="兑换流程" is-link :link="'/tips?id=' + id"></cell>
+            <cell v-else-if="id === '2433'" title="兑换流程" is-link :link="'/tips2433'"></cell>
+            <cell v-else-if="id === '2434'" title="兑换流程" is-link :link="'/tips2434'"></cell>
+            <cell v-else-if="id === '2431'" title="兑换流程" is-link :link="'/tips2431'"></cell>
+            <cell v-else-if="id === '2435'" title="兑换流程" is-link :link="'/tips2435'"></cell>
             <cell v-else title="适用门店" is-link :link="'/shopList?id=' + id">
                 <p>共{{shopList.length}}家</p>
             </cell>

@@ -44,6 +44,26 @@ export default new Router({
             path: '/tips',
             name: 'Tips',
             component: () => import('@/views/Tips')
+        },
+        {
+            path: '/tips2433',
+            name: 'Tips2433',
+            component: () => import('@/views/Tips2433')
+        },
+        {
+            path: '/tips2434',
+            name: 'Tips2434',
+            component: () => import('@/views/Tips2434')
+        },
+        {
+            path: '/tips2431',
+            name: 'Tips2431',
+            component: () => import('@/views/Tips2431')
+        },
+        {
+            path: '/tips2435',
+            name: 'Tips2435',
+            component: () => import('@/views/Tips2435')
         }
     ]
 })
