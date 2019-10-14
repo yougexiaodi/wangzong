@@ -10,10 +10,17 @@
                             <p>商户名称：{{vm.merchant}}</p>
                             <p class="goods_name">商品名称：{{vm.name}}</p>
                             <p class="goods_name" v-show="vm.state === '2'">使用门店：{{vm.shop}}</p>
-                            <p style="color:#e32d2d" v-show="vm.pay_state === '1'">券码：{{vm.code}}</p>
-                            <p style="color: green" v-show="vm.state === '1'" v-model="showCode"
-                               @click="qrCode(vm.code)">
-                                点击生成二维码</p>
+                            <template v-show="vm.pay_state === '1'">
+                                <template v-if="vm.gid === '2433'">
+                                    <p style="color:#e32d2d">券码：{{vm.code.split("|")[0]}}</p>
+                                    <p style="color:#e32d2d">密码：{{vm.code.split("|")[1]}}</p>
+                                </template>
+                                <template v-else>
+                                    <p style="color:#e32d2d">券码：{{vm.code}}</p>
+                                </template>
+                            </template>
+                            <p style="color: green" v-model="showCode" @click="qrCode(vm.code)"
+                               v-show="vm.state === '1' && vm.is_allowed_refund!=='0'">点击生成二维码</p>
                             <div v-transfer-dom>
                                 <x-dialog v-model="showCode" class="dialog-demo">
                                     <div class="img-box">
@@ -36,10 +43,10 @@
                                 <x-button style="margin-left: 30%;" mini @click.native="cancelOrder(vm.id)">取消
                                 </x-button>
                             </div>
-<!--                            <x-button :disabled="onRefund" v-show="vm.state === '1'" mini-->
-<!--                                      :gradients="['#FF2719', '#FF61AD']"-->
-<!--                                      @click.native="refund(vm.order_id)">退款-->
-<!--                            </x-button>-->
+                            <!--                            <x-button :disabled="onRefund" v-show="vm.state === '1'" mini-->
+                            <!--                                      :gradients="['#FF2719', '#FF61AD']"-->
+                            <!--                                      @click.native="refund(vm.order_id)">退款-->
+                            <!--                            </x-button>-->
                         </div>
                         <div v-show="vm.state === '0'" class="superscript-4"><i>未支付</i></div>
                         <div v-show="vm.state === '1'" class="superscript-1"><i>未使用</i></div>
