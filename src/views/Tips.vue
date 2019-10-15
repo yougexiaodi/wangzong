@@ -1,7 +1,7 @@
 <template>
     <div>
         <!-- <div class="bob6_banner"> -->
-        <img src="../assets/img/banner.png" width="100%">
+<!--        <img src="../assets/img/banner.png" width="100%">-->
         <!-- <img src="../assets/banner.jpg" width="100%"> -->
         <!-- <img class="calendar" src="../assets/kalendar.png" width="95%"> -->
         <!-- <img src="../assets/seven.png" width="100%"> -->

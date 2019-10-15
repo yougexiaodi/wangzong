@@ -1,6 +1,6 @@
 <template>
     <div>
-        <img src="../assets/img/banner.png" width="100%" alt="">
+<!--        <img src="../assets/img/banner.png" width="100%" alt="">-->
         <div class="details_bg flowList">
             <h2>兑换流程</h2>
             <div class="rule_list">
