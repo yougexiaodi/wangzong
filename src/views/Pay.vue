@@ -9,6 +9,9 @@
             <div><span>活动对象:&nbsp;&nbsp;</span>中国银行信用卡客户</div>
             <div><span>活动内容:&nbsp;&nbsp;</span>活动期间，中国银行信用卡客户可享指定商户超值优惠权益，通过“中国银行贵州分行”微信公众号-微生活-E卡惠，选择中行信用卡付款，每周每卡每商户限参与一次，各类电子券名额有限，先到先得。（单位卡、公务卡不参加本次活动）。
             </div>
+            <div>
+                <span style="font-weight: 700;color: red;">优惠券一经售出，概不退换</span>
+            </div>
         </div>
         <div style="margin-bottom: 20px;">
             <div class="yn_list" v-for="vm in dataInfo" :key="vm.id">
