@@ -15,6 +15,13 @@
                                     <p style="color:#e32d2d">券码：{{vm.code.split("|")[0]}}</p>
                                     <p style="color:#e32d2d">密码：{{vm.code.split("|")[1]}}</p>
                                 </template>
+                                <template v-else-if="vm.gid === '2430'">
+                                    <!--肯德基券码特殊处理 显示券码/跳转地址-->
+                                    <p style="color:#e32d2d" v-if="vm.code.indexOf('http')!==-1">
+                                        <a :href="vm.code">查看券码</a>
+                                    </p>
+                                    <p style="color:#e32d2d" v-else>券码：{{vm.code}}</p>
+                                </template>
                                 <template v-else>
                                     <p style="color:#e32d2d">券码：{{vm.code}}</p>
                                 </template>
