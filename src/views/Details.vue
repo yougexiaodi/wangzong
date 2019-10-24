@@ -33,8 +33,7 @@
         </confirm>
         <box class="buy" gap="10px">
             <x-button v-if="can_buy === 0" :disabled="true">{{msg}}</x-button>
-            <x-button v-else :show-loading="btnLoading" :disabled="disabled" v-cloak
-                      @click.native='getLoginState'>每周一上午10:00开售
+            <x-button v-else :show-loading="btnLoading" :disabled="disabled" v-cloak @click.native='getLoginState'>立即抢购
             </x-button>
         </box>
     </div>
