@@ -4,7 +4,7 @@
             <div class="gd_top_1">
                 <a style="color:#ffffff"
                    href="https://apply.mcard.boc.cn/apply/mobile/index?appid=wx567af860fd4db040&bankCode=0010">
-                    <img src="../assets/icon/card1.png">
+                    <img src="../assets/icon/card1.png" alt="">
                     <p class="gd_top_title">申请信用卡
                         <span class="gd_top_desc">立即返现礼</span>
                     </p>
@@ -12,200 +12,101 @@
             </div>
             <div class="gd_top_2">
                 <a style="color:#ffffff" href="https://apply.mcard.boc.cn/apply/mobile/recommendCard/activityIndex">
-                    <img src="../assets/icon/card2.png">
+                    <img src="../assets/icon/card2.png" alt="">
                     <p class="gd_top_title">推荐办卡
                         <span class="gd_top_desc">新客户专属活动</span>
                     </p>
                 </a>
             </div>
         </div>
-        <!-- box-shadow:2px 0 2px #a3a2a2,-2px 0 2px #a3a2a2; -->
         <div style="margin:0 auto;width:100%;">
-            <!-- :aspect-ratio="355/750" -->
             <swiper :aspect-ratio="355/750" auto dots-class="custom-bottom" dots-position="right">
                 <swiper-item class="swiper-demo-img" v-for="(item, index) in bannerList" :key="index">
-                    <!-- style="box-shadow:inset 5px 5px 5px #f0f0f0;" -->
-                    <!-- <a :href="item.url" v-if="item.id !== '51'">
-                      <img :src="item.img">
-                    </a> -->
-                    <img :src="item.img" @click="goBanner(item)" class="full_img">
+                    <img :src="item.img_url" @click="go(item)" class="full_img" alt="">
                 </swiper-item>
             </swiper>
         </div>
-
-        <group :gutter="0" class="gd_dist">
-            <flexbox>
-                <flexbox-item :span="1/4" class="ecard-nav">
-                    <a
-                        href="https://mcard.boc.cn/ebank/h5page/index.do?pageId=85d69c5ada8c475cab08c59bb89e6a77">
+        <group class="gd_dist" :gutter="0" v-if="activity28.activity_list && activity28.activity_list.length>0">
+            <flexbox style="flex-wrap: wrap;">
+                <flexbox-item :span="1/4" class="ecard-nav" v-for="item in activity28.activity_list" :key="item.id">
+                    <a @click="go(item)">
                         <div class="ecard-font">
                             <!-- <span style="visibility:hidden;">&#xe625;</span> -->
-                            <img src="~@/assets/img/reka.png" alt="" class="full_img">
+                            <img :src="item.img_url" alt="" class="full_img">
                         </div>
-                        <div class="flex-demo">热卡推荐</div>
-                    </a>
-                </flexbox-item>
-                <flexbox-item :span="1/4" class="ecard-nav">
-                    <a href="javascript:;" @click="showTips('活动即将上线，敬请期待')">
-                        <div class="ecard-font">
-                            <!-- <span style="visibility:hidden;">&#xe61f;</span> -->
-                            <img src="~@/assets/img/jiayou.png" alt="" class="full_img">
-                        </div>
-                        <div class="flex-demo">加油优惠</div>
-                    </a>
-                </flexbox-item>
-                <flexbox-item :span="1/4" class="ecard-nav">
-                    <a href="https://gdecard.jiahuaming.com/details?id=450">
-                        <div class="ecard-font">
-                            <img src="~@/assets/img/fenqi.png" alt="" class="full_img">
-                        </div>
-                        <div class="flex-demo">分期活动</div>
-                    </a>
-                </flexbox-item>
-                <flexbox-item :span="1/4" class="ecard-nav">
-                    <a
-                        href="http://gdecard.jiahuaming.com/boc/guizhouekh/#/pay">
-                        <div class="ecard-font">
-                            <img src="~@/assets/img/shangquan.png" alt="" class="full_img">
-                        </div>
-                        <div class="flex-demo">优惠商圈</div>
+                        <div class="flex-demo">{{item.title}}</div>
                     </a>
                 </flexbox-item>
             </flexbox>
         </group>
-        <group :gutter="0">
+        <group :gutter="0" v-if="activity10.activity_list && activity10.activity_list.length>0">
             <group-title class="home_title">
                 <span class="ecard-font" style="color:#3b3b3b;margin-right:.5rem">—</span>
-                惠聚中行日
+                {{activity10.c_name}}
                 <span class="ecard-font" style="color:#3b3b3b;margin-left:.5rem">—</span>
             </group-title>
-            <!-- <div class="week_list" v-for="(vm, index) in holidayList" :key="index">
-              <a :href="vm.url">
-                <img :src="vm.img" alt="" class="full_img">
-                <div class="list_icon">
-                </div>
-              </a>
-            </div> -->
             <div class="swiper-container" style="margin: 0 auto 10px;">
-                <tab :scroll-threshold='5' bar-active-color="#c81e0d" active-color="#666666" v-model="getDay">
-                    <!-- <tab-item :selected="getDay === 0" @on-item-click="tabDay">周一</tab-item>
-                    <tab-item :selected="getDay === 1" @on-item-click="tabDay">周二</tab-item>
-                    <tab-item :selected="getDay === 2" @on-item-click="tabDay">周三</tab-item> -->
-                    <tab-item :selected="getDay === 0" @on-item-click="tabDay">美食</tab-item>
-                    <tab-item :selected="getDay === 1" @on-item-click="tabDay">生鲜</tab-item>
-                    <tab-item :selected="getDay === 2" @on-item-click="tabDay">亲子</tab-item>
-                    <tab-item :selected="getDay === 3" @on-item-click="tabDay">休闲</tab-item>
-                    <tab-item :selected="getDay === 4" @on-item-click="tabDay">购物</tab-item>
+                <tab :scroll-threshold='activity10.activity_list.length' bar-active-color="#c81e0d"
+                     active-color="#666666" v-model="getDay">
+                    <tab-item v-for="(item,index) in activity10.activity_list" :selected="getDay === index"
+                              :key="item.id" @on-item-click="tabDay">{{item.title}}
+                    </tab-item>
                 </tab>
                 <div class="swiper-wrapper" style="margin: 20px 0 25px;">
-                    <!-- <div class="swiper-slide">
-                      <router-link :to="{path: 'new_groom2', query: {type: '6'}}">
-                        <img class="full_img" src="../assets/list/1.png" alt="">
-                      </router-link>
-                    </div>
-                    <div class="swiper-slide">
-                      <router-link :to="{path: 'new_groom2', query: {type: '7'}}">
-                        <img class="full_img" src="../assets/list/2.png" alt="">
-                      </router-link>
-                    </div>
-                    <div class="swiper-slide">
-                      <router-link :to="{path: 'new_groom2', query: {type: '8'}}">
-                        <img class="full_img" src="../assets/list/3.png" alt="">
-                      </router-link>
-                    </div> -->
-                    <div class="swiper-slide">
-                        <a href="http://gdecard.jiahuaming.com/boc/guizhouekh/#/pay">
-                            <img class="full_img" src="~@/assets/img/meishi.png" alt="">
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="javascript::" @click="showTips('活动即将上线，敬请期待')">
-                            <img class="full_img" src="~@/assets/img/shengxian.png" alt="">
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="javascript::" @click="showTips('活动即将上线，敬请期待')">
-                            <img class="full_img" src="~@/assets/img/qinzi.png" alt="">
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="javascript::" @click="showTips('活动即将上线，敬请期待')">
-                            <img class="full_img" src="~@/assets/img/xiuxian.png" alt="">
-                        </a>
-                    </div>
-                    <div class="swiper-slide">
-                        <a href="http://gdecard.jiahuaming.com/boc/guizhouekh/#/pay">
-                            <img class="full_img" src="~@/assets/img/gouwu.png" alt="">
+                    <div class="swiper-slide" v-for="item in activity10.activity_list" :key="item.id">
+                        <a @click="go(item)">
+                            <img class="full_img" :src="item.img_url" alt="">
                         </a>
                     </div>
                 </div>
                 <div class="swiper-pagination" style="bottom:0;"></div>
             </div>
-            <!-- end swiper -->
         </group>
-        <group :gutter="5">
+        <group :gutter="5" v-if="activity16.activity_list && activity16.activity_list.length>0">
             <group-title class="home_title">
                 <span class="ecard-font" style="color:#3b3b3b;margin-right:.5rem">—</span>
-                惠商圈
+                {{activity16.c_name}}
                 <span class="ecard-font" style="color:#3b3b3b;margin-left:.5rem">—</span>
             </group-title>
             <div class="areaswiper-box area" style="margin: 0 auto 10px;">
                 <swiper auto class="swiper-wrapper custom-hsq" style="margin: 20px 0 25px;">
-                    <swiper-item class="swiper-slide swiper-demo-img" v-for="(item,index) in areaList" :key="index">
-                        <!-- <router-link :to="item.url"> -->
-                        <a :href="item.url">
-                            <img :src="item.img" class="full-img" alt="">
+                    <swiper-item class="swiper-slide swiper-demo-img" v-for="item in activity16.activity_list"
+                                 :key="item.id">
+                        <a @click="go(item)">
+                            <img :src="item.img_url" class="full-img" alt="">
                         </a>
-                        <!-- </router-link> -->
                         <p class="wrap-text">{{item.title}}</p>
                     </swiper-item>
                 </swiper>
             </div>
         </group>
-        <group :gutter="5">
+        <group :gutter="5" v-if="activity17.activity_list && activity17.activity_list.length>0">
             <group-title class="home_title">
                 <span class="ecard-font" style="color:#3b3b3b;margin-right:.5rem">—</span>
-                境外消费
+                {{activity17.c_name}}
                 <span class="ecard-font" style="color:#3b3b3b;margin-left:.5rem">—</span>
             </group-title>
             <div class="gd_imgWrap">
-                <div class="gd_imgLoad" v-for="(src,index) in couponList" :key="index">
-                    <a :href="src.url">
-                        <img :src="src.img" class="full_img" alt="">
+                <div class="gd_imgLoad" v-for="item in activity17.activity_list" :key="item.id">
+                    <a @click="go(item)">
+                        <img :src="item.img_url" class="full_img" alt="">
                     </a>
                 </div>
             </div>
         </group>
-        <group :gutter="5">
+        <group :gutter="5" v-if="activity18.activity_list && activity18.activity_list.length>0">
             <group-title class="home_title">
                 <span class="ecard-font" style="color:#3b3b3b;margin-right:.5rem">—</span>
-                分期
+                {{activity18.c_name}}
                 <span class="ecard-font" style="color:#3b3b3b;margin-left:.5rem">—</span>
             </group-title>
-            <div style="margin:0 auto;width:98%;">
-                <a class=""
-                   href="https://pro.m.jd.com/mall/active/Xo9vmTfvoqA2ApTCjn57KtJV7zt/index.html?from=timeline&isappinstalled=0">
-                    <img src="@/assets/img/fenqi.jpg" class="full_img" alt="">
-                </a>
+            <div class="gd_imgWrap">
+                <div class="gd_imgLoad" v-for="item in activity18.activity_list" :key="item.id">
+                    <a @click="go(item)">
+                        <img :src="item.img_url" class="full_img" alt="">
+                    </a>
+                </div>
             </div>
-            <!-- <cell>
-              <span slot="icon" class="ecard-font" style="color:#fd6c70;">&#xe75a;</span>
-              <span class="gd_cell_title">— 分期 —</span>
-            </cell> -->
-            <!-- <div class="gd_imgWrap">
-              <div class="gd_imgLoad" v-for="(item, index) in fenList" :key="index">
-                <a :href="item.url">
-                  <img :src="item.img" class="full_img" alt="" style="border-radius: 10px;">
-                </a>
-              </div>
-            </div> -->
-            <!-- <swiper auto :aspect-ratio="375/750" :show-dots="false">
-              <swiper-item class="swiper-demo-img" v-for="(item, index) in fenList" :key="index">
-                <a :href="item.url">
-                  <img :src="item.img">
-                </a>
-              </swiper-item>
-            </swiper> -->
         </group>
     </div>
 </template>
@@ -255,52 +156,21 @@
         data() {
             return {
                 getDataUrl: '/api/gdekhback/phone/activity_list',
-                descColor: [],
-                bannerList: [
-                    {
-                        img: require('@/assets/img/area_b.png')
-                    }
-                ],
-                activityList: [],
-                couponList: [],
-                fenList: [],
-                yiList: [],
-                holidayList: [],
-                areaList: [
-                    {
-                        url: 'http://gdecard.jiahuaming.com/boc/guizhouekh/#/pay',
-                        title: '逸天城活动',
-                        img: require('@/assets/img/area.png')
-                    },
-                    {
-                        url: 'https://gdecard.jiahuaming.com/details?id=461',
-                        title: '国贸百货消费|刷卡支付满700减70',
-                        img: require('@/assets/img/banner-home-2.png')
-                    },
-                    {
-                        url: 'https://gdecard.jiahuaming.com/details?id=462',
-                        title: '百盛购物|刷卡支付满499元减50元',
-                        img: require('@/assets/img/banner-home-2.png')
-                    }
-                ],
-                showPass: true,
-                oWidth: document.body.clientWidth * 0.8,
-                // getDay: (new Date().getDay() + 6) % 7,
+                bannerList: [],
+                activity10: {},
+                activity16: {},
+                activity17: {},
+                activity18: {},
+                activity28: {},
                 getDay: 0,
                 pid: sessionStorage.getItem('pid')
-                // atFten: false,
-                // atDouble: false
             }
         },
         created() {
-            // this.getBannerList()
             this.setSwiper()
         },
         mounted: function () {
-            // this.getFten()
             this.getBannerList()
-            // this.setSwiper()
-            // this.getDay = new Date().getDate()
         },
         methods: {
             showTips(message) {
@@ -311,16 +181,12 @@
                 })
             },
             setSwiper() {
-                let self = this
-                // let oIndex = (new Date().getDay() - 1 + 7) % 7
-                let oIndex = this.getDay
-                var mySwiper = new WeekSwiper('.swiper-container', {
-                    // autoplay: true,
+                let self = this;
+                let mySwiper = new WeekSwiper('.swiper-container', {
                     loop: true,
                     slidesPerView: 3,
                     spaceBetween: 20,
                     centeredSlides: true,
-                    // progress: oIndex,
                     pagination: {
                         el: '.swiper-pagination',
                         clickable: true
@@ -333,114 +199,73 @@
                         }
                     }
                 })
-                // if (mySwiper) { mySwiper.slideToLoop(oIndex) }
-                // var areaSwiper = new WeekSwiper('.areaswiper-box', {
-                //   loop: true,
-                //   // centeredSlides: true,
-                //   width: self.oWidth,
-                //   spaceBetween: 20,
-                //   // autoplay: true,
-                //   observer: true,
-                //   observeParents: true,
-                //   onSlideChangeEnd: function (swiper) {
-                //     swiper.update()
-                //     // areaSwiper.startAutoplay()
-                //     swiper.reLoop()
-                //   }
-                // })
-                // if (areaSwiper) { areaSwiper.update() }
-                // this.getDay = oIndex
-                // console.log(oIndex)
-                // console.log(this.getDay)
-                // mySwiper.allowClick = true
-            },
-            TipsShow() {
-                this.$vux.confirm.show({
-                    title: '',
-                    content: '请在中国银行广东分行微信端中银e卡惠平台参与此活动',
-                    showCancelButton: false,
-                    confirmText: '关闭'
-                })
-            },
-            goBanner(item) {
-                if (['51', '26', '36'].includes(item.id)) {
-                    this.TipsShow()
-                } else {
-                    //   window.location.href = item.url
-                    if (item.url.indexOf("http") !== -1) {
-                        window.location.href = "";
-                    } else {
-                        this.$router.push({path: item.url})
-                    }
-                }
             },
             tabDay(index) {
-                var mySwiper = document.querySelector('.swiper-container').swiper
-                // // console.log(`${this.getDay} and ${index}`)
-                // // console.log(index)
+                let mySwiper = document.querySelector('.swiper-container').swiper;
                 mySwiper.slideToLoop(index)
             },
-            // goIcon (item) {
-            //   if (['38', '40', '50'].includes(item.id)) {
-            //     this.$vux.toast.show({
-            //       text: '2019年活动即将上线，敬请期待',
-            //       type: 'warn',
-            //       width: '10em'
-            //     })
-            //   } else {
-            //     window.location.href = item.url
-            //   }
-            // },
             getBannerList() {
-                this.$http.post(this.getDataUrl, {pid: this.pid})
-                    .then((res) => {
-                        this.bannerList = res.data.info[1]
-                        // for (let i = 0; i < res.data.info[1].length; i++) {
-                        //   if (res.data.info[1][i].url === '') {
-                        //     this.bannerList[i].url = '/details?id=' + res.data.info[1][i].id
-                        //   } else {
-                        //     this.bannerList[i].url = res.data.info[1][i].url
-                        //   }
-                        // }
-                        // this.activityList = res.data.info[2]
-                        // for (let i = 0; i < res.data.info[2].length; i++) {
-                        //   if (res.data.info[2][i].url === '') {
-                        //     this.activityList[i].url = '/details?id=' + res.data.info[2][i].id
-                        //   } else {
-                        //     this.activityList[i].url = res.data.info[2][i].url
-                        //   }
-                        // }
-                        this.couponList = res.data.info[3]
-                        // this.fenList = res.data.info[4]
-                        // this.yiList = res.data.info[5]
-                        // for (let i = 0; i < res.data.info[5].length; i++) {
-                        //   if (res.data.info[5][i].url === '') {
-                        //     this.yiList[i].url = '/details?id=' + res.data.info[5][i].id
-                        //   } else {
-                        //     this.yiList[i].url = res.data.info[5][i].url
-                        //   }
-                        // }
-                        // this.holidayList = res.data.info[13]
-                        // // let descColor = ['#f9757c', '#7dbb3d', '#ff0c9c', '#51abfb', '#fa2442', '#9b42ff', '#f4c01e', '#f4ac77']
-                        // // for (let i = 0; i < descColor.length; i++) {
-                        // //   this.activityList[i].descColor = descColor[i]
-                        // // }
-                        // this.areaList = res.data.info[14]
+                this.$http.get("/api/gdekhback/Redpacket/gdicardView", {
+                    params: {
+                        pid: this.pid
+                    }
+                }).then((res) => {
+                    if (res.data.status === 1) {
+                        this.bannerList = (res.data.data[9] || {})["activity_list"] || [];
+                        this.bannerList = sort(this.bannerList);
+
+                        this.activity16 = (res.data.data[16] || {});
+                        this.activity16.activity_list = sort(this.activity16.activity_list || []);
+
+                        this.activity17 = (res.data.data[17] || {});
+                        this.activity17.activity_list = sort(this.activity17.activity_list || []);
+
+                        this.activity18 = (res.data.data[18] || {});
+                        this.activity18.activity_list = sort(this.activity18.activity_list || []);
+
+                        this.activity28 = (res.data.data[28] || {});
+                        this.activity28.activity_list = sort(this.activity28.activity_list || []);
+
+                        this.activity10 = (res.data.data[10] || {});
+                        // res.data.data[10].children 提取二级分类下的activity_list
+                        this.activity10.activity_list = (this.activity10.children || []).map(function (item) {
+                            return item.activity_list && item.activity_list[0] || null;
+                        }).filter(function (item) {
+                            return item != null;
+                        });
+
                         this.$nextTick(() => {
                             this.setSwiper()
                         })
+                    }
+                });
+
+                function sort(list) {
+                    return list.sort(function (itemBefore, itemAfter) {
+                        let sort1 = parseInt(itemBefore.sort);
+                        let sort2 = parseInt(itemAfter.sort);
+                        if (isNaN(sort1)) {
+                            sort1 = Number.MAX_SAFE_INTEGER;
+                        }
+                        if (isNaN(sort2)) {
+                            sort2 = Number.MAX_SAFE_INTEGER;
+                        }
+                        return sort1 - sort2;
                     })
+                }
             },
-            getFten() {
-                // let day = new Date().getDay()
-                // let time = new Date().getHours()
-                // let nowDate = new Date().getDate()
-                // if (day === 5 && time >= 10) {
-                //   this.atFten = true
-                // }
-                // if (nowDate > 9 && nowDate < 13) {
-                //   this.atDouble = true
-                // }
+            go(item) {
+                let url = item.url;
+                if (url != null && url !== "") {
+                    if (/^(http:|https:)?\/\//g.test(url)) { // 路由外跳转
+                        window.location.href = url;
+                    } else if (/^\//g.test(url)) { // 路由内跳转
+                        this.$router.push(url);
+                    } else if (/^s:\/\//g.test(url)) { // 特殊处理
+                        let message = url.replace(/^s:\/\//g, "");
+                        this.showTips(message);
+                    }
+                }
             }
         }
     }
@@ -555,6 +380,8 @@
     }
 
     .gd_dist {
+        flex-wrap: wrap;
+
         margin-bottom: 7px;
         padding: 5%;
         background: #ffffff;
@@ -577,6 +404,8 @@
     }
 
     .gd_dist .ecard-nav {
+        margin-bottom: 8px;
+
         background-color: #f5f4f4 !important;
     }
 
@@ -697,6 +526,11 @@
         width: 48%;
         margin: 0;
     }
+
+    .gd_imgLoad:nth-last-child(1):first-child {
+        width: 98%;
+    }
+
 
     .gd_imgLoad img {
         width: 100%;
