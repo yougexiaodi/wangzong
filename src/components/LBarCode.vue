@@ -21,7 +21,9 @@
         methods: {
             make() {
                 if (this.value) {
-                    jsbarcode(this.$refs.barcode, this.value);
+                    jsbarcode(this.$refs.barcode, this.value, {
+                        width: 1.5
+                    });
                 }
             },
         },

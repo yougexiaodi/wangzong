@@ -30,7 +30,7 @@
                                 </template>
                             </template>
                             <p style="color: green" v-model="showCode" @click="qrCode(vm.code)"
-                               v-show="vm.state === '1' && vm.is_allowed_refund!=='0'">点击生成二维码</p>
+                               v-show="vm.state === '1' && vm.is_allowed_refund!=='0' && vm.gid!=='2430'">点击生成二维码</p>
                             <div v-transfer-dom>
                                 <x-dialog v-model="showCode" class="dialog-demo">
                                     <div class="img-box">
