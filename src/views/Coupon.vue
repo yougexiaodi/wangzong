@@ -20,7 +20,10 @@
                                     <p style="color:#e32d2d" v-if="vm.code.indexOf('http')!==-1">
                                         <a :href="vm.code">查看券码</a>
                                     </p>
-                                    <p style="color:#e32d2d" v-else>券码：{{vm.code}}</p>
+                                    <template v-else>
+                                        <p style="color:#e32d2d">券码：{{vm.code}}</p>
+                                        <p style="color: green" @click="handleBarCode(vm.code)">点击生成条形码</p>
+                                    </template>
                                 </template>
                                 <template v-else>
                                     <p style="color:#e32d2d">券码：{{vm.code}}</p>
@@ -35,6 +38,17 @@
                                         <qrcode :value="qrcode" type="img"></qrcode>
                                     </div>
                                     <div @click="showCode = false">
+                                        <span class="vux-close"></span>
+                                    </div>
+                                </x-dialog>
+                            </div>
+                            <div v-transfer-dom v-if="vm.gid === '2430'">
+                                <x-dialog v-model="showBarCode" class="dialog-demo">
+                                    <div class="img-box">
+                                        <p>向收银员出示此码</p>
+                                        <l-bar-code :value="barCode"></l-bar-code>
+                                    </div>
+                                    <div @click="showBarCode = false">
                                         <span class="vux-close"></span>
                                     </div>
                                 </x-dialog>
@@ -90,12 +104,14 @@
         XDialog,
         TransferDomDirective as TransferDom
     } from 'vux'
+    import LBarCode from "../components/LBarCode";
 
     export default {
         directives: {
             TransferDom
         },
         components: {
+            LBarCode,
             Group,
             Cell,
             XButton,
@@ -131,7 +147,9 @@
                 qrcode: '',
                 payment: '1',
                 onRefund: false,
-                showCode: false
+                showCode: false,
+                showBarCode: false, // 条形码控制
+                barCode: "", // 当前条形码
             }
         },
         mounted() {
@@ -369,6 +387,10 @@
             qrCode(val) {
                 this.qrcode = val
                 this.showCode = true
+            },
+            handleBarCode(val){
+                this.barCode = val;
+                this.showBarCode = true;
             }
         }
     }
