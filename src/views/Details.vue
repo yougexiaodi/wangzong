@@ -13,9 +13,18 @@
             <cell v-else-if="id === '2434'" title="兑换流程" is-link :link="'/tips2434'"></cell>
             <cell v-else-if="id === '2431'" title="兑换流程" is-link :link="'/tips2431'"></cell>
             <cell v-else-if="id === '2435'" title="兑换流程" is-link :link="'/tips2435'"></cell>
-            <cell v-else title="适用门店" is-link :link="'/shopList?id=' + id">
-                <p>共{{shopList.length}}家</p>
-            </cell>
+            <template v-else>
+                <template v-if="id === '2750'">
+                    <cell title="加油卡号">
+                        <x-input style="padding: 0;" v-model="consignee_address" placeholder="请输入中石化加油卡号"></x-input>
+                    </cell>
+                </template>
+                <template v-else>
+                    <cell title="适用门店" is-link :link="'/shopList?id=' + id">
+                        <p>共{{shopList.length}}家</p>
+                    </cell>
+                </template>
+            </template>
             <cell title="支付方式">
                 <x-button type="warn" mini>中国银行信用卡</x-button>
             </cell>
@@ -98,7 +107,8 @@
                 getDetailsUrl: '/api/gdekhback/phone/goods_list',
                 loginState: '/api/gdekhback/phone/is_login',
                 loginStateWx: '/api/gdekhback/phone/is_oauth',
-                getShopListUrl: '/api/gdekhback/special/shop_list'
+                getShopListUrl: '/api/gdekhback/special/shop_list',
+                consignee_address: "",
             }
         },
         mounted() {
@@ -171,9 +181,33 @@
                     .then((res) => {
                         if (res.data.status === 0) {
                             // this.$vux.loading.hide()
-                            this.show4 = true
-                            this.btnLoading = false
-                            this.disabled = false
+                            if (this.id === '2750') {
+                                if (!this.consignee_address) {
+                                    this.$vux.toast.show({
+                                        text: '请填写加油卡号',
+                                        type: 'warn',
+                                        width: '10em'
+                                    });
+                                    this.btnLoading = false;
+                                    this.disabled = false;
+                                } else if (!(/^1000\d{15}$/.test(this.consignee_address))) {
+                                    this.$vux.toast.show({
+                                        text: '加油卡号格式不正确',
+                                        type: 'warn',
+                                        width: '10em'
+                                    });
+                                    this.btnLoading = false;
+                                    this.disabled = false;
+                                } else {
+                                    this.show4 = true;
+                                    this.btnLoading = false;
+                                    this.disabled = false;
+                                }
+                            } else {
+                                this.show4 = true;
+                                this.btnLoading = false;
+                                this.disabled = false;
+                            }
                             // this.onConfirm4()
                         } else {
                             this.$router.push({
@@ -211,7 +245,15 @@
                                 text: '订单生成中'
                             })
 
-                            let url = _this.buyUrl + '?pid=' + _this.pid + '&gid=' + _this.id + '&code_type=' + _this.$route.query.code_type + '&back_url=' + encodeURIComponent('/boc/guizhouekh/#/details?id=' + _this.id + '&code_type=' + _this.$route.query.code_type)
+                            let url = _this.buyUrl + '?' +
+                                'pid=' + _this.pid + '&' +
+                                'gid=' + _this.id + '&' +
+                                'code_type=' + _this.$route.query.code_type + '&' +
+                                'consignee_address=' + _this.consignee_address + '&' +
+                                'back_url=' + encodeURIComponent('/boc/guizhouekh/#/details?' +
+                                    'id=' + _this.id + '&' +
+                                    'code_type=' + _this.$route.query.code_type
+                                )
                             window.location.href = url
                         }
                     })
@@ -225,7 +267,16 @@
                                 transition: '',
                                 text: '订单生成中'
                             })
-                            let url = '/wxPay' + '?pid=' + _this.pid + '&mid=' + _this.mid + '&gid=' + _this.id + '&code_type=' + _this.$route.query.code_type + '&back_url=' + encodeURIComponent('/boc/guizhouekh/#/details?id=' + _this.id + '&code_type=' + _this.$route.query.code_type)
+                            let url = '/wxPay' + '?' +
+                                'pid=' + _this.pid + '&' +
+                                'mid=' + _this.mid + '&' +
+                                'gid=' + _this.id + '&' +
+                                'consignee_address=' + _this.consignee_address + '&' +
+                                'code_type=' + _this.$route.query.code_type + '&' +
+                                'back_url=' + encodeURIComponent('/boc/guizhouekh/#/details?' +
+                                    'id=' + _this.id + '&' +
+                                    'code_type=' + _this.$route.query.code_type
+                                );
                             window.location.href = url
                         }
                     })
