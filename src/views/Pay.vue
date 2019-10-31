@@ -51,8 +51,12 @@
             }
         },
         mounted() {
-            this.getData()
-            this.getTxt()
+            this.getData();
+            this.getTxt();
+            this.$watch("$route", () => {
+                this.getData();
+                this.getTxt();
+            })
         },
         methods: {
             getTxt() {
@@ -63,16 +67,19 @@
                 }
             },
             getData() {
-                this.$http.post(this.getDataUrl, {pid: this.pid, aid: this.$route.query.aid})
-                    .then((res) => {
-                        this.$vux.loading.show({
-                            text: '加载中...'
-                        })
-                        if (res.data.status === 0) {
-                            this.dataInfo = res.data.info
-                            this.$vux.loading.hide()
-                        }
+                this.$http.post(this.getDataUrl, {
+                    pid: this.pid,
+                    aid: this.$route.query.aid,
+                    activity_id: this.$route.query.activity_id
+                }).then((res) => {
+                    this.$vux.loading.show({
+                        text: '加载中...'
                     })
+                    if (res.data.status === 0) {
+                        this.dataInfo = res.data.info
+                        this.$vux.loading.hide()
+                    }
+                })
             }
         }
     }
