@@ -15,9 +15,11 @@
             <cell v-else-if="id === '2435'" title="兑换流程" is-link :link="'/tips2435'"></cell>
             <template v-else>
                 <template v-if="id === '2750'">
-                    <cell title="加油卡号">
-                        <x-input style="padding: 0;" v-model="consignee_address" placeholder="请输入中石化加油卡号"></x-input>
-                    </cell>
+                    <x-input title="加油卡号"
+                             placeholder="请输入中石化加油卡号"
+                             placeholder-align="right"
+                             text-align="right"
+                             v-model="consignee_address"></x-input>
                 </template>
                 <template v-else>
                     <cell title="适用门店" is-link :link="'/shopList?id=' + id">
