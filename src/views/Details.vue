@@ -201,16 +201,19 @@
                                     this.btnLoading = false;
                                     this.disabled = false;
                                 } else {
-                                    this.show4 = true;
+                                    // this.show4 = true;
+                                    this.payment = "1";
+                                    this.onConfirm4();
                                     this.btnLoading = false;
                                     this.disabled = false;
                                 }
                             } else {
-                                this.show4 = true;
+                                // this.show4 = true;
+                                this.payment = "1";
+                                this.onConfirm4();
                                 this.btnLoading = false;
                                 this.disabled = false;
                             }
-                            // this.onConfirm4()
                         } else {
                             this.$router.push({
                                 path: '/login',
