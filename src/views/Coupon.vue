@@ -10,7 +10,7 @@
                             <p>商户名称：{{vm.merchant}}</p>
                             <p class="goods_name">商品名称：{{vm.name}}</p>
                             <p class="goods_name" v-show="vm.state === '2'">使用门店：{{vm.shop}}</p>
-                            <template v-show="vm.pay_state === '1'">
+                            <template v-if="vm.pay_state === '1'">
                                 <template v-if="vm.gid === '2433'">
                                     <p style="color:#e32d2d">券码：{{vm.code.split("|")[0]}}</p>
                                     <p style="color:#e32d2d">密码：{{vm.code.split("|")[1]}}</p>
