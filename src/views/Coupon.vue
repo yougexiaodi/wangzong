@@ -11,7 +11,7 @@
                             <p class="goods_name">商品名称：{{vm.name}}</p>
                             <p class="goods_name" v-show="vm.state === '2'">使用门店：{{vm.shop}}</p>
                             <template v-if="vm.pay_state === '1'">
-                                <template v-if="vm.gid === '2433'">
+                                <template v-if="vm.gid === '2433' || vm.gid === '2766' || vm.gid === '2764'">
                                     <p style="color:#e32d2d">券码：{{vm.code.split("|")[0]}}</p>
                                     <p style="color:#e32d2d">密码：{{vm.code.split("|")[1]}}</p>
                                 </template>
@@ -30,7 +30,7 @@
                                 </template>
                             </template>
                             <p style="color: green" v-model="showCode" @click="qrCode(vm.code)"
-                               v-show="vm.state === '1' && vm.is_allowed_refund!=='0' && vm.gid!=='2430'">点击生成二维码</p>
+                               v-show="vm.state === '1' && vm.is_allowed_refund!=='0' && vm.gid!=='2430' && vm.gid !== '2766' && vm.gid !== '2764'">点击生成二维码</p>
                             <div v-transfer-dom>
                                 <x-dialog v-model="showCode" class="dialog-demo">
                                     <div class="img-box">
