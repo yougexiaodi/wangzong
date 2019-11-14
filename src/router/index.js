@@ -35,6 +35,21 @@ export default new Router({
             name: 'OrderInfo',
             component: () => import('@/views/OrderInfo')
         },
+        {// 优惠商圈
+            path: '/groom',
+            name: 'Groom',
+            component: () => import('@/views/Groom')
+        },
+        {// 优惠商圈
+            path: '/groom2',
+            name: 'Groom2',
+            component: () => import('@/views/Groom2')
+        },
+        {// 详情-分类详情(非商品购买详情页)
+            path: '/depictDetails',
+            name: 'DepictDetails',
+            component: () => import('@/views/DepictDetails')
+        },
         {
             path: '/shopList',
             name: 'ShopList',
