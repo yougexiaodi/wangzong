@@ -1,30 +1,6 @@
-# guizhou
-
-> A Vue.js project
-
-## Build Setup
-
-``` bash
-# install dependencies
-npm install
-
-# serve with hot reload at localhost:8080
-npm run dev
-
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-
-# run unit tests
-npm run unit
-
-# run e2e tests
-npm run e2e
-
-# run all tests
-npm test
-```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+# 贵州E卡惠微信版
+## 优惠商圈说明
+    groom?id=分类Id 商圈列表
+    groom2?id=分类Id 商品列表
+    details?id=2429&mid=183 购买详情页
+    活动url为空 活动详情页
