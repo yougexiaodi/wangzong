@@ -10,7 +10,7 @@
                 <i slot="label" class="iconfont" style="padding-right:10px;display:block;">&#xe658;</i>
                 <img slot="right-full-height" :src="verifyCode" @click="getVerify">
             </x-input>
-            <x-input type="tel" class="weui-vcode" placeholder="请输入短信验证码" v-model="sms_code">
+            <x-input type="tel" class="weui-vcode" placeholder="请输入短信验证码" v-model="sms_code" :max="4">
                 <i slot="label" class="iconfont" style="padding-right:10px;display:block;">&#xe628;</i>
                 <x-button disabled v-if="(code && mobile) === ''" slot="right" type="warn" plain mini>发送验证码</x-button>
                 <x-button v-else-if="minutesCount === 0" slot="right" type="warn" plain mini @click.native="sendMsg">
