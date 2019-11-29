@@ -5,7 +5,7 @@
         <!--      <img src="../assets/img/rules.png" width="96%">-->
         <!--    </div>-->
         <div class="details">
-            <div><span>活动时间:&nbsp;&nbsp;</span>2019年11月1日-2019年11月30日</div>
+            <div><span>活动时间:&nbsp;&nbsp;</span>2019年12月2日-2019年12月31日 每周一上午11:00</div>
             <div><span>活动对象:&nbsp;&nbsp;</span>中国银行信用卡客户</div>
             <div><span>活动内容:&nbsp;&nbsp;</span>活动期间，中国银行信用卡客户可享指定商户超值优惠权益，通过“中国银行贵州分行”微信公众号-微生活-E卡惠，选择中行信用卡付款，每周每卡每商户限参与一次，各类电子券名额有限，先到先得。（单位卡、公务卡不参加本次活动）。
             </div>
