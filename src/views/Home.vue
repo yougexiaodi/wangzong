@@ -7,6 +7,64 @@
                 </swiper-item>
             </swiper>
         </div>
+        <div class="split-line"></div>
+        <div class="activity-type activity-type-1">
+            <div class="activity-type-title">精彩卡片</div>
+            <div class="activity-type-content">
+                <flexbox>
+                    <flexbox>
+                        <div>
+                            <flexbox>
+                                <img src="../assets/8cf27905f1eaa40f48709d672f68489.png" alt="">
+                            </flexbox>
+                        </div>
+                        <div>
+                            <div class="title">申请信用卡</div>
+                            <div class="depict">立即返现礼&nbsp;></div>
+                        </div>
+                    </flexbox>
+                    <div style="height: 16.5vw;width: 1px;background-color: #f3f5f7;"></div>
+                    <flexbox>
+                        <div>
+                            <flexbox>
+                                <img src="../assets/8cf27905f1eaa40f48709d672f68489.png" alt="">
+                            </flexbox>
+                        </div>
+                        <div>
+                            <div class="title">推荐办卡</div>
+                            <div class="depict">新客户专属活动&nbsp;></div>
+                        </div>
+                    </flexbox>
+                </flexbox>
+            </div>
+        </div>
+        <div class="split-line"></div>
+        <div class="activity-type activity-type-2">
+            <div class="activity-type-title">活动专区</div>
+            <flexbox :gutter="0" justify="space-between" wrap="wrap">
+                <flexbox-item :span="0.97/2" v-for="item in activity17.activity_list" :key="item.id">
+                    <img :src="item.img_url" alt="" style="width: 100%;border-radius: 1vw;">
+                </flexbox-item>
+            </flexbox>
+        </div>
+        <div class="split-line"></div>
+        <div class="activity-type activity-type-2">
+            <div class="activity-type-title">限时秒杀</div>
+            <flexbox :gutter="0" justify="space-between" wrap="wrap">
+                <flexbox-item :span="0.97/2" v-for="item in activity17.activity_list" :key="item.id">
+                    <img :src="item.img_url" alt="" style="width: 100%;border-radius: 1vw;">
+                </flexbox-item>
+            </flexbox>
+        </div>
+        <div class="split-line"></div>
+        <div class="activity-type activity-type-2">
+            <div class="activity-type-title">假日专场</div>
+            <flexbox :gutter="0" justify="space-between" wrap="wrap">
+                <flexbox-item :span="0.97/2" v-for="item in activity17.activity_list" :key="item.id">
+                    <img :src="item.img_url" alt="" style="width: 100%;border-radius: 1vw;">
+                </flexbox-item>
+            </flexbox>
+        </div>
     </div>
 </template>
 
@@ -28,7 +86,7 @@
         Box,
         Tab, TabItem, Confirm
     } from 'vux'
-    
+
     import 'swiper/dist/css/swiper.min.css'
 
     export default {
@@ -83,43 +141,9 @@
                 }).then((res) => {
                     if (res.data.status === 1) {
                         this.bannerList = (res.data.data[9] || {})["activity_list"] || [];
-                        this.bannerList = sort(this.bannerList);
-
-                        this.activity16 = (res.data.data[16] || {});
-                        this.activity16.activity_list = sort(this.activity16.activity_list || []);
-
-                        this.activity17 = (res.data.data[17] || {});
-                        this.activity17.activity_list = sort(this.activity17.activity_list || []);
-
-                        this.activity18 = (res.data.data[18] || {});
-                        this.activity18.activity_list = sort(this.activity18.activity_list || []);
-
-                        this.activity28 = (res.data.data[28] || {});
-                        this.activity28.activity_list = sort(this.activity28.activity_list || []);
-
-                        this.activity10 = (res.data.data[10] || {});
-                        // res.data.data[10].children 提取二级分类下的activity_list
-                        this.activity10.activity_list = (this.activity10.children || []).map(function (item) {
-                            return item.activity_list && item.activity_list[0] || null;
-                        }).filter(function (item) {
-                            return item != null;
-                        });
+                        this.activity17 = res.data.data[17] || {};
                     }
                 });
-
-                function sort(list) {
-                    return list.sort(function (itemBefore, itemAfter) {
-                        let sort1 = parseInt(itemBefore.sort);
-                        let sort2 = parseInt(itemAfter.sort);
-                        if (isNaN(sort1)) {
-                            sort1 = Number.MAX_SAFE_INTEGER;
-                        }
-                        if (isNaN(sort2)) {
-                            sort2 = Number.MAX_SAFE_INTEGER;
-                        }
-                        return sort1 - sort2;
-                    })
-                }
             },
             go(item) {
                 let url = item.url;
@@ -139,9 +163,56 @@
 </script>
 
 <style lang="less" scoped>
-    body {
-        background: #f5f4f4 !important;
+    .gd_home {
+        background-color: #ffffff;
     }
+
+    .split-line {
+        height: 1.6vw;
+        background-color: #f3f5f7;
+    }
+
+    .activity-type {
+        padding: 0 4vw 2vw;
+
+        .activity-type-title {
+            margin-top: 3vw;
+            margin-bottom: 3vw;
+
+            font-size: 4.3vw;
+            line-height: 6.1vw;
+            font-weight: 700;
+            color: #232222;
+        }
+
+        &.activity-type-1 {
+            .activity-type-content {
+                .title {
+                    font-size: 3.7vw;
+                    line-height: 6.1vw;
+                    color: #232222;
+                }
+
+                .depict {
+                    font-size: 3.2vw;
+                    line-height: 6.1vw;
+                    color: #999999;
+                }
+
+                img {
+                    margin-left: 6.1vw;
+                    margin-right: 1.7vw;
+                    width: 10.4vw;
+                    height: 6.7vw;
+                }
+            }
+        }
+
+        &.activity-type-2 {
+
+        }
+    }
+
 
     .gd_top div {
         display: inline-block;
