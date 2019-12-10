@@ -49,7 +49,7 @@ module.exports = {
         // Paths
         assetsRoot: path.resolve(__dirname, '../dist'),
         assetsSubDirectory: 'static',
-        assetsPublicPath: '/boc/guizhouekh/',
+        assetsPublicPath: '/boc/hebei_lifecycle/',
 
         /**
          * Source Maps

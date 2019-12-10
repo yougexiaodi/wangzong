@@ -163,7 +163,7 @@
                 this.$http.post(this.loginStateWx, {pid: sessionStorage.getItem('pid')})
                     .then((res) => {
                         if (res.data.status !== 0) {
-                            let url = this.loginStateWx + '?pid=' + sessionStorage.getItem('pid') + '&wx_id=2' + '&back_url=' + encodeURIComponent('/boc/guizhouekh/#/details?id=' + this.id)
+                            let url = this.loginStateWx + '?pid=' + sessionStorage.getItem('pid') + '&wx_id=2' + '&back_url=' + encodeURIComponent('/boc/hebei_lifecycle/#/details?id=' + this.id)
                             window.location.href = url
                         } else {
                             this.$vux.loading.hide()
@@ -255,7 +255,7 @@
                                 'gid=' + _this.id + '&' +
                                 'code_type=' + _this.$route.query.code_type + '&' +
                                 'consignee_address=' + _this.consignee_address + '&' +
-                                'back_url=' + encodeURIComponent('/boc/guizhouekh/#/details?' +
+                                'back_url=' + encodeURIComponent('/boc/hebei_lifecycle/#/details?' +
                                     'id=' + _this.id + '&' +
                                     'code_type=' + _this.$route.query.code_type
                                 )
@@ -278,7 +278,7 @@
                                 'gid=' + _this.id + '&' +
                                 'consignee_address=' + _this.consignee_address + '&' +
                                 'code_type=' + _this.$route.query.code_type + '&' +
-                                'back_url=' + encodeURIComponent('/boc/guizhouekh/#/details?' +
+                                'back_url=' + encodeURIComponent('/boc/hebei_lifecycle/#/details?' +
                                     'id=' + _this.id + '&' +
                                     'code_type=' + _this.$route.query.code_type
                                 );

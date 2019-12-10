@@ -30,15 +30,15 @@ if (process.env.NODE_ENV === 'production') {
         wx.onMenuShareAppMessage({
             title: '惠聚中行日', // 分享标题
             desc: '中国银行信用卡客户专享',
-            link: 'http://gdecard.jiahuaming.com/boc/guizhouekh/#/',
-            imgUrl: 'http://gdecard.jiahuaming.com/boc/guizhouekh/images/area_b.png'
+            link: 'http://gdecard.jiahuaming.com/boc/hebei_lifecycle/#/',
+            imgUrl: 'http://gdecard.jiahuaming.com/boc/hebei_lifecycle/images/area_b.png'
         })
 
         wx.onMenuShareTimeline({
             title: '惠聚中行日', // 分享标题
             desc: '中国银行信用卡客户专享',
-            link: 'http://gdecard.jiahuaming.com/boc/guizhouekh/#/',
-            imgUrl: 'http://gdecard.jiahuaming.com/boc/guizhouekh/images/area_b.png'
+            link: 'http://gdecard.jiahuaming.com/boc/hebei_lifecycle/#/',
+            imgUrl: 'http://gdecard.jiahuaming.com/boc/hebei_lifecycle/images/area_b.png'
         })
     })
     // const permissions = JSON.stringify(['onMenuShareTimeline', 'onMenuShareAppMessage', 'chooseWXPay'])
