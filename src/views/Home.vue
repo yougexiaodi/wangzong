@@ -1,24 +1,5 @@
 <template>
     <div class="gd_home">
-        <div class="gd_top">
-            <div class="gd_top_1">
-                <a style="color:#ffffff"
-                   href="https://apply.mcard.boc.cn/apply/mobile/index?appid=wx567af860fd4db040&bankCode=0010">
-                    <img src="../assets/icon/card1.png" alt="">
-                    <p class="gd_top_title">申请信用卡
-                        <span class="gd_top_desc">立即返现礼</span>
-                    </p>
-                </a>
-            </div>
-            <div class="gd_top_2">
-                <a style="color:#ffffff" href="https://apply.mcard.boc.cn/apply/mobile/recommendCard/activityIndex">
-                    <img src="../assets/icon/card2.png" alt="">
-                    <p class="gd_top_title">推荐办卡
-                        <span class="gd_top_desc">新客户专属活动</span>
-                    </p>
-                </a>
-            </div>
-        </div>
         <div style="margin:0 auto;width:100%;">
             <swiper :aspect-ratio="355/750" auto dots-class="custom-bottom" dots-position="right">
                 <swiper-item class="swiper-demo-img" v-for="(item, index) in bannerList" :key="index">
