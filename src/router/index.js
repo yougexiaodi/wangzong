@@ -55,5 +55,12 @@ export default new Router({
             name: 'Tips',
             component: () => import('@/views/Tips')
         },
+        {
+            path: '/activityYiFenQian',
+            component: () => import('../views/ActivityYiFenQian.vue'),
+            meta: {
+                hiddenFooterMenu: true
+            }
+        },
     ]
 })

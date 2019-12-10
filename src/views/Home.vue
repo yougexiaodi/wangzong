@@ -7,46 +7,6 @@
                 </swiper-item>
             </swiper>
         </div>
-        <group class="gd_dist" :gutter="0" v-if="activity28.activity_list && activity28.activity_list.length>0">
-            <flexbox style="flex-wrap: wrap;">
-                <flexbox-item :span="1/4" class="ecard-nav" v-for="item in activity28.activity_list" :key="item.id">
-                    <a @click="go(item)">
-                        <div class="ecard-font">
-                            <img :src="item.img_url" alt="" class="full_img">
-                        </div>
-                        <div class="flex-demo">{{item.title}}</div>
-                    </a>
-                </flexbox-item>
-            </flexbox>
-        </group>
-        <group :gutter="5" v-if="activity17.activity_list && activity17.activity_list.length>0">
-            <group-title class="home_title">
-                <span class="ecard-font" style="color:#3b3b3b;margin-right:.5rem">—</span>
-                {{activity17.c_name}}
-                <span class="ecard-font" style="color:#3b3b3b;margin-left:.5rem">—</span>
-            </group-title>
-            <div class="gd_imgWrap">
-                <div class="gd_imgLoad" v-for="item in activity17.activity_list" :key="item.id">
-                    <a @click="go(item)">
-                        <img :src="item.img_url" class="full_img" alt="">
-                    </a>
-                </div>
-            </div>
-        </group>
-        <group :gutter="5" v-if="activity18.activity_list && activity18.activity_list.length>0">
-            <group-title class="home_title">
-                <span class="ecard-font" style="color:#3b3b3b;margin-right:.5rem">—</span>
-                {{activity18.c_name}}
-                <span class="ecard-font" style="color:#3b3b3b;margin-left:.5rem">—</span>
-            </group-title>
-            <div class="gd_imgWrap">
-                <div class="gd_imgLoad" v-for="item in activity18.activity_list" :key="item.id">
-                    <a @click="go(item)">
-                        <img :src="item.img_url" class="full_img" alt="">
-                    </a>
-                </div>
-            </div>
-        </group>
     </div>
 </template>
 
@@ -68,8 +28,7 @@
         Box,
         Tab, TabItem, Confirm
     } from 'vux'
-
-    import WeekSwiper from 'swiper'
+    
     import 'swiper/dist/css/swiper.min.css'
 
     export default {
@@ -178,7 +137,8 @@
         }
     }
 </script>
-<style>
+
+<style lang="less" scoped>
     body {
         background: #f5f4f4 !important;
     }
@@ -304,8 +264,7 @@
         font-size: .6rem;
         text-align: center;
     }
-</style>
-<style lang="less" scoped>
+
     .gd_dist .ecard-nav {
         margin-left: 0 !important;
     }

@@ -1,16 +1,19 @@
 <template>
     <div id="app">
         <router-view/>
-        <tabbar class="ecard-tabbar" style="position:fixed;">
-            <tabbar-item :link="{path:'/'}" :selected="$route.path === '/'">
-                <span class="ecard-font" style="font-size: 22px" slot="icon">&#xe600;</span>
-                <span slot="label">首页</span>
-            </tabbar-item>
-            <tabbar-item :link="{path: '/coupon'}" :selected="$route.path === '/coupon'">
-                <span class="ecard-font" style="font-size: 22px" slot="icon">&#xe601;</span>
-                <span slot="label">我的</span>
-            </tabbar-item>
-        </tabbar>
+        <template v-if="isShowFooterMenu">
+            <div style="width: 100vw;height: 53px;"></div>
+            <tabbar class="ecard-tabbar" style="position:fixed;">
+                <tabbar-item :link="{path:'/'}" :selected="$route.path === '/'">
+                    <span class="ecard-font" style="font-size: 22px" slot="icon">&#xe600;</span>
+                    <span slot="label">首页</span>
+                </tabbar-item>
+                <tabbar-item :link="{path: '/coupon'}" :selected="$route.path === '/coupon'">
+                    <span class="ecard-font" style="font-size: 22px" slot="icon">&#xe601;</span>
+                    <span slot="label">我的</span>
+                </tabbar-item>
+            </tabbar>
+        </template>
     </div>
 </template>
 
@@ -27,11 +30,14 @@
                 pid: sessionStorage.getItem('pid')
             }
         },
+        computed: {
+            isShowFooterMenu() {
+                return !this.$route.meta.hiddenFooterMenu;
+            }
+        },
         mounted() {
         },
-        methods: {
-
-        }
+        methods: {}
     }
 </script>
 

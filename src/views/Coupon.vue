@@ -137,7 +137,6 @@
                 loginState: '/api/gdekhback/phone/is_login',
                 dataDetailsUrl: '/api/gdekhback/phone/order_list_all',
                 refundUrl: '/api/gdekhback/phone/order_refund',
-                loginStateWx: '/api/gdekhback/phone/is_oauth',
                 payUrl: '/api/gdekhback/phone/guizhou_boc_pay',
                 getWxIdUrl: '/api/gdekhback/phone/depth_wechat_pay',
                 cancelUrl: '/api/gdekhback/phone/order_cancel',
