@@ -11,11 +11,6 @@ export default new Router({
             component: () => import('@/views/Home')
         },
         {
-            path: '/pay',
-            name: 'Pay',
-            component: () => import('@/views/Pay')
-        },
-        {
             path: '/coupon',
             name: 'Coupon',
             component: () => import('@/views/Coupon')
