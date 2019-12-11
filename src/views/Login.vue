@@ -8,7 +8,7 @@
             </x-input>
             <x-input type="tel" placeholder="请输入图形验证码" v-model="code">
                 <i slot="label" class="iconfont" style="padding-right:10px;display:block;">&#xe658;</i>
-                <img slot="right-full-height" :src="verifyCode" @click="getVerify">
+                <img slot="right-full-height" :src="verifyCode" alt="" @click="getVerify">
             </x-input>
             <x-input type="tel" class="weui-vcode" placeholder="请输入短信验证码" v-model="sms_code" :max="4">
                 <i slot="label" class="iconfont" style="padding-right:10px;display:block;">&#xe628;</i>
@@ -54,22 +54,20 @@
             }
         },
         mounted() {
-            this.$vux.loading.show({
-                text: '加载中...'
-            })
-            this.getVerify()
-            if (cookie.get('captcha')) {
-                let timestamp = cookie.get('captcha')
-                let now = new Date().getTime()
-                this.countDown(Math.round((timestamp - now) / 1000 + 60))
+            this.$vux.loading.show({text: '加载中...'});
+            this.getVerify();
+            if (cookie.get("captcha")) {
+                let timestamp = cookie.get("captcha");
+                let now = new Date().getTime();
+                this.countDown(Math.round((timestamp - now) / 1000 + 60));
             }
         },
         methods: {
             getVerify() {
                 this.$http.post(this.getVerifyUrl)
                     .then((res) => {
-                        this.verifyCode = this.getVerifyUrl + '?' + Math.random()
-                        this.$vux.loading.hide()
+                        this.verifyCode = this.getVerifyUrl + '?' + Math.random();
+                        this.$vux.loading.hide();
                     })
             },
             sendMsg() {
@@ -77,35 +75,29 @@
                     mobile: this.mobile,
                     code: this.code,
                     pid: sessionStorage.getItem('pid')
+                }).then((res) => {
+                    if (res.data.status === 0) {
+                        this.$vux.toast.show({text: res.data.info});
+                        this.smsCookie();
+                    } else {
+                        this.$vux.toast.show({text: res.data.info, type: 'warn'})
+                    }
                 })
-                    .then((res) => {
-                        if (res.data.status === 0) {
-                            this.$vux.toast.show({
-                                text: res.data.info
-                            })
-                            this.smsCookie()
-                        } else {
-                            this.$vux.toast.show({
-                                text: res.data.info,
-                                type: 'warn'
-                            })
-                        }
-                    })
             },
             smsCookie() {
-                let now = new Date().getTime()
-                cookie.set('captcha', now)
-                this.countDown(60)
+                let now = new Date().getTime();
+                cookie.set("captcha", now);
+                this.countDown(60);
             },
             countDown(num) {
                 if (num <= 0) {
-                    this.minutesCount = 0
+                    this.minutesCount = 0;
                     return
                 }
                 this.minutesCount = num;
                 let self = this;
                 let resend = setInterval(function () {
-                    self.minutesCount--
+                    self.minutesCount--;
                     if (self.minutesCount === 0) {
                         clearInterval(resend)
                     }
@@ -114,28 +106,24 @@
             login() {
                 this.$vux.loading.show({
                     text: '加载中...'
-                })
+                });
                 this.$http.post(this.loginUrl, {
                     code: this.code,
                     mobile: this.mobile,
                     sms_code: this.sms_code,
                     pid: sessionStorage.getItem('pid')
-                })
-                    .then((res) => {
-                        if (res.data.status === 0) {
-                            if (this.$route.query.path === undefined) {
-                                this.$router.push({path: '/'})
-                            } else {
-                                this.$router.go(-1)
-                            }
+                }).then((res) => {
+                    if (res.data.status === 0) {
+                        if (this.$route.query.path === undefined) {
+                            this.$router.push({path: '/'});
                         } else {
-                            this.$vux.toast.show({
-                                text: res.data.info,
-                                type: 'warn'
-                            })
+                            this.$router.go(-1);
                         }
-                        this.$vux.loading.hide()
-                    })
+                    } else {
+                        this.$vux.toast.show({text: res.data.info, type: 'warn'});
+                    }
+                    this.$vux.loading.hide();
+                })
             }
         }
     }
