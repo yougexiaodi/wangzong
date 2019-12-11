@@ -8,6 +8,7 @@ export default new Router({
         {
             path: '/',
             name: 'Home',
+            redirect: "/activityYiFenQian",
             component: () => import('@/views/Home')
         },
         {
@@ -55,7 +56,7 @@ export default new Router({
             name: 'Tips',
             component: () => import('@/views/Tips')
         },
-        {
+        { // 一分钱活动
             path: '/activityYiFenQian',
             component: () => import('../views/ActivityYiFenQian.vue'),
             meta: {

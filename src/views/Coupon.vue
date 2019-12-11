@@ -31,10 +31,18 @@
                                     class="order-price bold">￥{{item.pay_price}}</span></div>
                             </flexbox>
                         </template>
-                        <flexbox class="order-item-btn-content" wrap="wrap" justify="space-between">
-                            <button class="order-btn" type="button">申请退款</button>
-                            <button class="order-btn" type="button">取消订单</button>
-                            <button class="order-btn" type="button">查看券码</button>
+                        <template v-else>
+                            <div style="height: 10vw;"></div>
+                        </template>
+                        <flexbox class="order-item-btn-content" wrap="wrap" justify="flex-end">
+                            <template v-if="item.pay_state === '0'">
+                                <button class="order-btn" type="button">取消</button>
+                                <button class="order-btn" type="button">付款</button>
+                            </template>
+                            <template v-else-if="item.pay_state === '1'">
+                                <button class="order-btn" type="button">申请退款</button>
+                                <button class="order-btn" type="button">查看券码</button>
+                            </template>
                         </flexbox>
                     </flexbox-item>
                 </flexbox>
@@ -137,7 +145,10 @@
                 }).then((res) => {
                     if (res.data.status === 0) {
                         if (res.data.info.length !== 0) {
-                            this.couponList = res.data.info
+                            this.couponList = res.data.info;
+                            let shift = this.couponList.shift();
+                            shift.pay_state = "0";
+                            this.couponList.unshift(shift);
                         } else {
                             this.$vux.alert.show({
                                 title: '提示',
@@ -237,6 +248,7 @@
         }
 
         .order-btn {
+            margin-left: 4vw;
             padding: 0 2vw;
             border: solid 1px #dd5238;
             border-radius: 2.9vw;
