@@ -2,7 +2,8 @@
     <div class="gd_home">
         <div style="margin:0 auto;width:100%;">
             <swiper :aspect-ratio="355/750" auto dots-class="custom-bottom" dots-position="right">
-                <swiper-item class="swiper-demo-img" v-for="(item, index) in bannerList" :key="index">
+                <swiper-item class="swiper-demo-img" v-for="(item, index) in activityListBanner.activity_list"
+                             :key="index">
                     <img :src="item.img_url" @click="go(item)" class="full_img" alt="">
                 </swiper-item>
             </swiper>
@@ -39,28 +40,31 @@
             </div>
         </div>
         <div class="split-line"></div>
-        <div class="activity-type activity-type-2">
+        <div class="activity-type activity-type-2"
+             v-if="activityListJRZC.activity_list && activityListJRZC.activity_list.length>0">
             <div class="activity-type-title">活动专区</div>
             <flexbox :gutter="0" justify="space-between" wrap="wrap">
-                <flexbox-item :span="0.97/2" v-for="item in activity17.activity_list" :key="item.id">
+                <flexbox-item :span="0.97/2" v-for="item in activityListJRZC.activity_list" :key="item.id">
                     <img :src="item.img_url" alt="" style="width: 100%;border-radius: 1vw;">
                 </flexbox-item>
             </flexbox>
         </div>
         <div class="split-line"></div>
-        <div class="activity-type activity-type-2">
+        <div class="activity-type activity-type-2"
+             v-if="activityListJRZC.activity_list && activityListJRZC.activity_list.length>0">
             <div class="activity-type-title">限时秒杀</div>
             <flexbox :gutter="0" justify="space-between" wrap="wrap">
-                <flexbox-item :span="0.97/2" v-for="item in activity17.activity_list" :key="item.id">
+                <flexbox-item :span="0.97/2" v-for="item in activityListJRZC.activity_list" :key="item.id">
                     <img :src="item.img_url" alt="" style="width: 100%;border-radius: 1vw;">
                 </flexbox-item>
             </flexbox>
         </div>
         <div class="split-line"></div>
-        <div class="activity-type activity-type-2">
+        <div class="activity-type activity-type-2"
+             v-if="activityListJRZC.activity_list && activityListJRZC.activity_list.length>0">
             <div class="activity-type-title">假日专场</div>
             <flexbox :gutter="0" justify="space-between" wrap="wrap">
-                <flexbox-item :span="0.97/2" v-for="item in activity17.activity_list" :key="item.id">
+                <flexbox-item :span="0.97/2" v-for="item in activityListJRZC.activity_list" :key="item.id">
                     <img :src="item.img_url" alt="" style="width: 100%;border-radius: 1vw;">
                 </flexbox-item>
             </flexbox>
@@ -111,15 +115,13 @@
         },
         data() {
             return {
+                pid: sessionStorage.getItem('pid'),
+                activityListBanner: {},
+                activityListJCKP: {},
+                activityListHDZQ: {},
+                activityListXHMS: {},
+                activityListJRZC: {},
                 getDataUrl: '/api/gdekhback/phone/activity_list',
-                bannerList: [],
-                activity10: {},
-                activity16: {},
-                activity17: {},
-                activity18: {},
-                activity28: {},
-                getDay: 0,
-                pid: sessionStorage.getItem('pid')
             }
         },
         mounted: function () {
@@ -140,8 +142,11 @@
                     }
                 }).then((res) => {
                     if (res.data.status === 1) {
-                        this.bannerList = (res.data.data[9] || {})["activity_list"] || [];
-                        this.activity17 = res.data.data[17] || {};
+                        this.activityListBanner = res.data.data[9] || {};
+                        this.activityListJCKP = res.data.data[9] || {};
+                        this.activityListHDZQ = res.data.data[9] || {};
+                        this.activityListXHMS = res.data.data[9] || {};
+                        this.activityListJRZC = res.data.data[9] || {};
                     }
                 });
             },
@@ -247,22 +252,9 @@
         background-color: #f5f4f4 !important;
     }
 
-    .ecard-nav .ecard-font {
-        color: #ffffff !important;
-        text-align: center;
-    }
-
-    .gd_dist .ecard-font {
-        background: #ffffff;
-    }
-
     .gd_dist .flex-demo {
         background: #ffffff;
         text-align: center;
-    }
-
-    .ecard-font .full_img {
-        width: 2rem;
     }
 
     .flex-demo {
