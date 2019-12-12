@@ -114,7 +114,6 @@
             }
         },
         mounted() {
-            this.$vux.loading.show({text: '加载中...'});
             if (this.$route.query.err !== undefined) {
                 this.$vux.toast.show({text: this.$route.query.err, type: 'warn', width: '12em', time: '5000'});
             }
@@ -122,8 +121,10 @@
         },
         methods: {
             getLoginState() {
+                this.$vux.loading.show({text: '加载中...'});
                 isLogin(this.pid).then(res => {
                     isLoginWxAndLoginWx(this.pid, this.$route.path, this.$route.query).then(res => {
+                        this.$vux.loading.hidden();
                         this.getDataDetails();
                     })
                 }, res => {
