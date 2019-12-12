@@ -15,10 +15,10 @@
         </group>
         <div class="content" v-html="dataInfo.detail"></div>
         <confirm
-            v-model='show4'
+            v-model='isShowPayMode'
             :close-on-confirm='true'
             title='请选择支付方式'
-            @on-confirm='onConfirm4'>
+            @on-confirm='payModeConfirm'>
             <group>
                 <radio :options='selectPay' v-model="payment"></radio>
             </group>
@@ -26,9 +26,6 @@
         <box class="buy" gap="10px">
             <x-button v-if="can_buy === 0" :disabled="true">{{msg}}</x-button>
             <x-button v-else :show-loading="btnLoading" :disabled="btnDisabled" v-cloak @click.native='getLoginState'>
-                立即抢购
-            </x-button>
-            <x-button :show-loading="btnLoading" :disabled="btnDisabled" v-cloak @click.native='getLoginState'>
                 立即抢购
             </x-button>
         </box>
@@ -62,6 +59,7 @@
         },
         data() {
             return {
+                pid: sessionStorage.getItem('pid'),
                 id: this.$route.query.id,
                 selectPay: [{
                     icon: '//gdecard.jiahuaming.com/boc/gd8buy/assets/images/boc_logo.png',
@@ -74,19 +72,12 @@
                 }],
                 payment: '1',
                 msg: '',
-                detailsList: [],
-                pid: sessionStorage.getItem('pid'),
-                show4: false,
+                isShowPayMode: false,
                 can_buy: '',
                 btnLoading: false,
                 btnDisabled: false,
-                timeSet: 0,
                 dataUrl: '/api/gdekhback/special/goods_detail_sc',
-                buyUrl: '/api/gdekhback/phone/guizhou_boc_pay',
-                getDetailsUrl: '/api/gdekhback/phone/goods_list',
-                loginState: '/api/gdekhback/phone/is_login',
-                loginStateWx: '/api/gdekhback/phone/is_oauth',
-                consignee_address: "",
+                buyUrl: '/api/gdekhback/phone/hebei_lifecycle_boc_pay',
                 dataInfo: {}
             }
         },
@@ -118,7 +109,7 @@
                 this.btnDisabled = true;
                 isLogin(this.pid).then(res => {
                     isLoginWxAndLoginWx(this.pid, this.$route.path, this.$route.query).then(res => {
-                        this.onConfirm4();
+                        this.isShowPayMode = true;
                         this.btnLoading = false;
                         this.btnDisabled = false;
                     })
@@ -132,8 +123,8 @@
                     })
                 })
             },
-            onConfirm4() {
-                this.show4 = false
+            payModeConfirm() {
+                this.isShowPayMode = false;
                 if (this.payment === '1') {
                     const _this = this
                     this.$vux.confirm.show({
@@ -147,7 +138,6 @@
                                 'pid=' + _this.pid + '&' +
                                 'gid=' + _this.id + '&' +
                                 'code_type=' + _this.$route.query.code_type + '&' +
-                                'consignee_address=' + _this.consignee_address + '&' +
                                 'back_url=' + encodeURIComponent('/boc/hebei_lifecycle/#/details?' +
                                     'id=' + _this.id + '&' +
                                     'code_type=' + _this.$route.query.code_type
@@ -169,7 +159,6 @@
                                 'pid=' + _this.pid + '&' +
                                 'mid=' + _this.dataInfo.mid + '&' +
                                 'gid=' + _this.id + '&' +
-                                'consignee_address=' + _this.consignee_address + '&' +
                                 'code_type=' + _this.$route.query.code_type + '&' +
                                 'back_url=' + encodeURIComponent('/boc/hebei_lifecycle/#/details?' +
                                     'id=' + _this.id + '&' +

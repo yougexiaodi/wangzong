@@ -36,12 +36,11 @@
                         </template>
                         <flexbox class="order-item-btn-content" wrap="wrap" justify="flex-end">
                             <template v-if="item.pay_state === '0'">
-                                <button class="order-btn" type="button">取消</button>
-                                <button class="order-btn" type="button">付款</button>
+                                <button class="order-btn" type="button" @click="cancelOrder(item)">取消</button>
+                                <button class="order-btn" type="button" @click="buyCoupon(item)">付款</button>
                             </template>
                             <template v-else-if="item.pay_state === '1'">
-                                <button class="order-btn" type="button">申请退款</button>
-                                <button class="order-btn" type="button">查看券码</button>
+                                <!--                                <button class="order-btn" type="button">查看券码</button>-->
                             </template>
                         </flexbox>
                     </flexbox-item>
@@ -67,10 +66,8 @@
         FlexboxItem
     } from 'vux'
     import LBarCode from "../components/LBarCode";
-    // TODO 卷码显示
-    // TODO 退款
-    // TODO 再次支付
-    // TODO 取消订单
+    import {isLogin, isLoginWxAndLoginWx} from "../utils/login";
+
     export default {
         directives: {
             TransferDom
@@ -94,6 +91,8 @@
             return {
                 loginState: '/api/gdekhback/phone/is_login',
                 dataDetailsUrl: '/api/gdekhback/phone/order_list_all',
+                cancelUrl: '/api/gdekhback/phone/order_cancel',
+                buyUrl: '/api/gdekhback/phone/hebei_lifecycle_boc_pay',
                 couponList: [],
                 tabIndex: "0",
             }
@@ -122,21 +121,19 @@
         },
         methods: {
             getLoginState() {
-                this.$http.post(this.loginState, {
-                    pid: sessionStorage.getItem('pid')
-                }).then((res) => {
-                    if (res.data.status === 0) {
+                isLogin(this.pid).then(res => {
+                    isLoginWxAndLoginWx(this.pid, this.$route.path, this.$route.query).then(res => {
                         this.getDataDetails();
-                        this.$vux.loading.hide()
-                    } else {
-                        this.$router.push({
-                            path: '/login',
-                            query: {
-                                path: this.$route.path
-                            }
-                        });
-                    }
-                })
+                    })
+                }, res => {
+                    this.$router.push({
+                        path: '/login',
+                        query: {
+                            ...this.$route.query,
+                            path: this.$route.path
+                        }
+                    })
+                });
             },
             getDataDetails() {
                 let _this = this;
@@ -146,9 +143,6 @@
                     if (res.data.status === 0) {
                         if (res.data.info.length !== 0) {
                             this.couponList = res.data.info;
-                            let shift = this.couponList.shift();
-                            shift.pay_state = "0";
-                            this.couponList.unshift(shift);
                         } else {
                             this.$vux.alert.show({
                                 title: '提示',
@@ -165,7 +159,43 @@
             },
             getSpecialPrice(item) {
                 return item.pre_price - item.pay_price;
-            }
+            },
+            buyCoupon(item) {
+                if (item.pay_type === '2') {
+                    window.location.href = this.buyUrl + '?' +
+                        'pid=' + sessionStorage.getItem('pid') + '&' +
+                        'order_id=' + item.order_id + '&' +
+                        'back_url=' + encodeURIComponent('/coupon?' +
+                            'pid=' + sessionStorage.getItem('pid')
+                        );
+                } else if (item.pay_type === '1') {
+                    window.location.href = '/wxPay/?' +
+                        'pid=' + sessionStorage.getItem('pid') + '&' +
+                        'order_id=' + item.order_id + '&' +
+                        'gid=' + item.id + '&' +
+                        'wx_id=2'
+                }
+            },
+            cancelOrder(item) {
+                let self = this
+                self.$vux.confirm.show({
+                    title: '操作提示',
+                    content: '确定要取消此订单吗？',
+                    onConfirm() {
+                        self.$http.post(self.cancelUrl, {
+                            pid: sessionStorage.getItem('pid'),
+                            id: item.id,
+                        }).then((res) => {
+                            if (res.data.status === 0) {
+                                self.$vux.toast.show({text: '取消成功', type: 'success'});
+                            } else {
+                                self.$vux.toast.show({text: '取消失败，请重新处理，或联系客服', type: 'warn', width: '10em'});
+                            }
+                            self.getDataDetails();
+                        })
+                    }
+                })
+            },
         }
     }
 </script>

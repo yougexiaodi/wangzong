@@ -1,4 +1,5 @@
 # 河北卡生命周期
+    河北惠聚中行日福利嗨翻天
     svn://47.93.43.121/gdecard.jiahuaming.com/boc/hebei_lifecycle
 ## 优惠商圈说明
     groom?id=分类Id 商圈列表
