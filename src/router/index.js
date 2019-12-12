@@ -11,6 +11,10 @@ export default new Router({
             redirect: "/activityYiFenQian",
             component: () => import('@/views/Home')
         },
+        { // 首页别名入口
+            path: '/home',
+            component: () => import('@/views/Home')
+        },
         {
             path: '/coupon',
             name: 'Coupon',

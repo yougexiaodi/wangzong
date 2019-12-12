@@ -8,64 +8,59 @@
                 </swiper-item>
             </swiper>
         </div>
-        <div class="split-line"></div>
-        <div class="activity-type activity-type-1">
-            <div class="activity-type-title">精彩卡片</div>
-            <div class="activity-type-content">
-                <flexbox>
-                    <flexbox>
-                        <div>
-                            <flexbox>
-                                <img src="../assets/8cf27905f1eaa40f48709d672f68489.png" alt="">
-                            </flexbox>
-                        </div>
-                        <div>
-                            <div class="title">申请信用卡</div>
-                            <div class="depict">立即返现礼&nbsp;></div>
-                        </div>
-                    </flexbox>
-                    <div style="height: 16.5vw;width: 1px;background-color: #f3f5f7;"></div>
-                    <flexbox>
-                        <div>
-                            <flexbox>
-                                <img src="../assets/8cf27905f1eaa40f48709d672f68489.png" alt="">
-                            </flexbox>
-                        </div>
-                        <div>
-                            <div class="title">推荐办卡</div>
-                            <div class="depict">新客户专属活动&nbsp;></div>
-                        </div>
-                    </flexbox>
+        <div class="activity-type activity-type-1"
+             v-if="activityListJCKP.activity_list && activityListJCKP.activity_list.length>0">
+            <div class="activity-type-title">{{activityListJCKP.c_name}}</div>
+            <flexbox class="activity-type-content">
+                <flexbox class="item" v-for="item in activityListJCKP.activity_list" :key="item.id"
+                         @click="go(item)">
+                    <div>
+                        <flexbox>
+                            <img :src="item.img_url" alt="">
+                        </flexbox>
+                    </div>
+                    <div>
+                        <div class="title">{{item.title}}</div>
+                        <div class="depict">{{item.brief}}</div>
+                    </div>
                 </flexbox>
-            </div>
+            </flexbox>
         </div>
-        <div class="split-line"></div>
         <div class="activity-type activity-type-2"
-             v-if="activityListJRZC.activity_list && activityListJRZC.activity_list.length>0">
-            <div class="activity-type-title">活动专区</div>
+             v-if="activityListHDZQ.activity_list && activityListHDZQ.activity_list.length>0">
+            <div class="activity-type-title">{{activityListHDZQ.c_name}}</div>
             <flexbox :gutter="0" justify="space-between" wrap="wrap">
-                <flexbox-item :span="0.97/2" v-for="item in activityListJRZC.activity_list" :key="item.id">
+                <flexbox-item :span="0.97/2" v-for="item in activityListHDZQ.activity_list" :key="item.id"
+                              @click="go(item)">
                     <img :src="item.img_url" alt="" style="width: 100%;border-radius: 1vw;">
                 </flexbox-item>
             </flexbox>
         </div>
-        <div class="split-line"></div>
-        <div class="activity-type activity-type-2"
-             v-if="activityListJRZC.activity_list && activityListJRZC.activity_list.length>0">
-            <div class="activity-type-title">限时秒杀</div>
-            <flexbox :gutter="0" justify="space-between" wrap="wrap">
-                <flexbox-item :span="0.97/2" v-for="item in activityListJRZC.activity_list" :key="item.id">
-                    <img :src="item.img_url" alt="" style="width: 100%;border-radius: 1vw;">
+        <div class="activity-type activity-type-3"
+             v-if="activityListXHMS.activity_list && activityListXHMS.activity_list.length>0">
+            <div class="activity-type-title">{{activityListXHMS.c_name}}</div>
+            <flexbox :gutter="0">
+                <flexbox-item :span="1/4" v-for="item in activityListXHMS.activity_list" :key="item.id"
+                              @click="go(item)">
+                    <div>
+                        <img :src="item.img_url" alt="" style="width: 100%;border-radius: 1vw;">
+                    </div>
+                    <div class="title">
+                        {{item.title}}
+                    </div>
                 </flexbox-item>
             </flexbox>
         </div>
-        <div class="split-line"></div>
-        <div class="activity-type activity-type-2"
+        <div class="activity-type activity-type-4"
              v-if="activityListJRZC.activity_list && activityListJRZC.activity_list.length>0">
-            <div class="activity-type-title">假日专场</div>
+            <div class="activity-type-title">{{activityListJRZC.c_name}}</div>
             <flexbox :gutter="0" justify="space-between" wrap="wrap">
-                <flexbox-item :span="0.97/2" v-for="item in activityListJRZC.activity_list" :key="item.id">
-                    <img :src="item.img_url" alt="" style="width: 100%;border-radius: 1vw;">
+                <flexbox-item :span="0.97/2" v-for="item in activityListJRZC.activity_list" :key="item.id"
+                              @click="go(item)">
+                    <img :src="item.img_url" alt="" style="width: 100%;border-radius: 1vw;vertical-align: top;">
+                    <div class="title">
+                        {{item.title}}
+                    </div>
                 </flexbox-item>
             </flexbox>
         </div>
@@ -142,11 +137,11 @@
                     }
                 }).then((res) => {
                     if (res.data.status === 1) {
-                        this.activityListBanner = res.data.data[9] || {};
-                        this.activityListJCKP = res.data.data[9] || {};
-                        this.activityListHDZQ = res.data.data[9] || {};
-                        this.activityListXHMS = res.data.data[9] || {};
-                        this.activityListJRZC = res.data.data[9] || {};
+                        this.activityListBanner = res.data.data[93] || {};
+                        this.activityListJCKP = res.data.data[89] || {};
+                        this.activityListHDZQ = res.data.data[90] || {};
+                        this.activityListXHMS = res.data.data[91] || {};
+                        this.activityListJRZC = res.data.data[92] || {};
                     }
                 });
             },
@@ -172,12 +167,8 @@
         background-color: #ffffff;
     }
 
-    .split-line {
-        height: 1.6vw;
-        background-color: #f3f5f7;
-    }
-
     .activity-type {
+        border-top: #f3f5f7 solid 1.6vw;
         padding: 0 4vw 2vw;
 
         .activity-type-title {
@@ -192,6 +183,15 @@
 
         &.activity-type-1 {
             .activity-type-content {
+                .item {
+                    padding: 2vw 0;
+                    border-right: 1px solid #f3f5f7;
+                }
+
+                .item:last-child {
+                    border-right: 0;
+                }
+
                 .title {
                     font-size: 3.7vw;
                     line-height: 6.1vw;
@@ -208,13 +208,18 @@
                     margin-left: 6.1vw;
                     margin-right: 1.7vw;
                     width: 10.4vw;
-                    height: 6.7vw;
                 }
             }
         }
 
-        &.activity-type-2 {
-
+        &.activity-type-4 {
+            .title {
+                margin-top: 2vw;
+                font-size: 3.2vw;
+                line-height: 1;
+                color: #222222;
+                text-align: center;
+            }
         }
     }
 
