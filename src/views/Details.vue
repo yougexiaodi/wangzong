@@ -158,7 +158,7 @@
                             let url = '/wxPay' + '?' +
                                 'pid=' + _this.pid + '&' +
                                 'mid=' + _this.dataInfo.mid + '&' +
-                                'gid=' + _this.gid + '&' +
+                                'gid=' + _this.id + '&' +
                                 'code_type=' + _this.$route.query.code_type + '&' +
                                 'back_url=' + encodeURIComponent('/boc/hebei_lifecycle/#/details?' +
                                     'id=' + _this.id + '&' +
