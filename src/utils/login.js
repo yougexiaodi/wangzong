@@ -55,7 +55,9 @@ export function loginWx(pid, backUrl, backParams = {}) {
     let href = url + '?' +
         'pid=' + pid + '&' +
         'wx_id=2' + '&' +
-        'back_url=' + encodeURIComponent(baseProjectUrl + "#" + backUrl);
+        'back_url=' + encodeURIComponent(baseProjectUrl + "#" + backUrl + "?" +
+            toQueryStr({...backParams})
+        );
     window.location.href = href
 }
 
@@ -73,9 +75,10 @@ export function isLoginAndLogin(pid, backUrl, backParams = {}) {
         });
     })
 }
+
 /**
-* 微信登录
-* */
+ * 微信登录
+ * */
 export function isLoginWxAndLoginWx(pid, backUrl, backParams = {}) {
     return isLoginWx(pid).then(res => {
         return res;

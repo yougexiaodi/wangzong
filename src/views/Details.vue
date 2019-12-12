@@ -25,7 +25,10 @@
         </confirm>
         <box class="buy" gap="10px">
             <x-button v-if="can_buy === 0" :disabled="true">{{msg}}</x-button>
-            <x-button v-else :show-loading="btnLoading" :disabled="disabled" v-cloak @click.native='getLoginState'>
+            <x-button v-else :show-loading="btnLoading" :disabled="btnDisabled" v-cloak @click.native='getLoginState'>
+                立即抢购
+            </x-button>
+            <x-button :show-loading="btnLoading" :disabled="btnDisabled" v-cloak @click.native='getLoginState'>
                 立即抢购
             </x-button>
         </box>
@@ -43,7 +46,8 @@
         PopupPicker,
         CellBox
     } from 'vux'
-
+    import {isLogin, isLoginWxAndLoginWx} from "../utils/login";
+    // TODO 支付
     export default {
         components: {
             Group,
@@ -75,7 +79,7 @@
                 show4: false,
                 can_buy: '',
                 btnLoading: false,
-                disabled: false,
+                btnDisabled: false,
                 timeSet: 0,
                 dataUrl: '/api/gdekhback/special/goods_detail_sc',
                 buyUrl: '/api/gdekhback/phone/guizhou_boc_pay',
@@ -110,24 +114,22 @@
                 })
             },
             getLoginState() {
-                this.btnLoading = true
-                this.disabled = true
-                this.$http.post(this.loginState, {
-                    pid: this.pid
-                }).then((res) => {
-                    if (res.data.status === 0) {
-                        this.payment = "1";
+                this.btnLoading = true;
+                this.btnDisabled = true;
+                isLogin(this.pid).then(res => {
+                    isLoginWxAndLoginWx(this.pid, this.$route.path, this.$route.query).then(res => {
                         this.onConfirm4();
                         this.btnLoading = false;
-                        this.disabled = false;
-                    } else {
-                        this.$router.push({
-                            path: '/login',
-                            query: {
-                                path: this.$route.path + '?id=' + this.$route.query.id
-                            }
-                        })
-                    }
+                        this.btnDisabled = false;
+                    })
+                }, res => {
+                    this.$router.push({
+                        path: '/login',
+                        query: {
+                            ...this.$route.query,
+                            path: this.$route.path
+                        }
+                    })
                 })
             },
             onConfirm4() {
