@@ -1,12 +1,7 @@
 <template>
     <div class="gd_home">
-        <div style="margin:0 auto;width:100%;">
-            <swiper :aspect-ratio="355/750" auto dots-class="custom-bottom" dots-position="right">
-                <swiper-item class="swiper-demo-img" v-for="(item, index) in activityListBanner.activity_list"
-                             :key="index">
-                    <img :src="item.img_url" @click="go(item)" class="full_img" alt="">
-                </swiper-item>
-            </swiper>
+        <div v-if="activityListBanner.activity_list && activityListBanner.activity_list.length>0">
+            <l-swiper2 :list="activityListBanner.activity_list" @item-click="go"></l-swiper2>
         </div>
         <div class="activity-type activity-type-1"
              v-if="activityListJCKP.activity_list && activityListJCKP.activity_list.length>0">
@@ -43,7 +38,10 @@
         </div>
         <div class="activity-type activity-type-4"
              v-if="activityListJRZC.activity_list && activityListJRZC.activity_list.length>0">
-            <div class="activity-type-title">{{activityListJRZC.c_name}}</div>
+            <div class="activity-type-title">
+                {{activityListJRZC.c_name.split("|")[0]}}
+                <span class="time" v-if="activityListJRZC.c_name.split('|')[1]">{{activityListJRZC.c_name.split("|")[1]}}</span>
+            </div>
             <flexbox :gutter="0" justify="space-between" wrap="wrap">
                 <flexbox-item :span="0.97/2" v-for="item in activityListJRZC.activity_list" :key="item.id"
                               @click="go(item)">
@@ -76,10 +74,12 @@
         Tab, TabItem, Confirm
     } from 'vux'
     import LSwiper1 from "../components/LSwiper1";
+    import LSwiper2 from "../components/LSwiper2";
     //TODO 限时秒杀
     //TODO Banner特效
     export default {
         components: {
+            LSwiper2,
             LSwiper1,
             Tabbar,
             TabbarItem,
@@ -210,6 +210,16 @@
                 line-height: 1;
                 color: #222222;
                 text-align: center;
+            }
+
+            .time {
+                margin-left: 1vw;
+                padding: 0 1vw;
+                border-radius: 0.7vw;
+                border: solid 1px #f8434d;
+                line-height: 4.3vw;
+                font-size: 2.4vw;
+                color: #f8434d;
             }
         }
     }
