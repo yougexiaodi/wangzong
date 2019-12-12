@@ -124,7 +124,7 @@
                 this.$vux.loading.show({text: '加载中...'});
                 isLogin(this.pid).then(res => {
                     isLoginWxAndLoginWx(this.pid, this.$route.path, this.$route.query).then(res => {
-                        this.$vux.loading.hidden();
+                        this.$vux.loading.hide();
                         this.getDataDetails();
                     })
                 }, res => {
