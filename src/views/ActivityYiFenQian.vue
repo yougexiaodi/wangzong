@@ -30,7 +30,7 @@
                 this.$router.push({
                     path: "/details",
                     query: {
-                        id: 10
+                        id: 3220
                     }
                 });
             },
