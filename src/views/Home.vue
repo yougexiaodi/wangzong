@@ -39,17 +39,7 @@
         <div class="activity-type activity-type-3"
              v-if="activityListXHMS.activity_list && activityListXHMS.activity_list.length>0">
             <div class="activity-type-title">{{activityListXHMS.c_name}}</div>
-            <flexbox :gutter="0">
-                <flexbox-item :span="1/4" v-for="item in activityListXHMS.activity_list" :key="item.id"
-                              @click="go(item)">
-                    <div>
-                        <img :src="item.img_url" alt="" style="width: 100%;border-radius: 1vw;">
-                    </div>
-                    <div class="title">
-                        {{item.title}}
-                    </div>
-                </flexbox-item>
-            </flexbox>
+            <l-swiper1 :list="activityListXHMS.activity_list" @item-click="go"></l-swiper1>
         </div>
         <div class="activity-type activity-type-4"
              v-if="activityListJRZC.activity_list && activityListJRZC.activity_list.length>0">
@@ -85,11 +75,12 @@
         Box,
         Tab, TabItem, Confirm
     } from 'vux'
-
-    import 'swiper/dist/css/swiper.min.css'
-
+    import LSwiper1 from "../components/LSwiper1";
+    //TODO 限时秒杀
+    //TODO Banner特效
     export default {
         components: {
+            LSwiper1,
             Tabbar,
             TabbarItem,
             Flexbox,
