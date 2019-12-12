@@ -166,7 +166,7 @@
                     window.location.href = this.buyUrl + '?' +
                         'pid=' + sessionStorage.getItem('pid') + '&' +
                         'order_id=' + item.order_id + '&' +
-                        'back_url=' + encodeURIComponent('/coupon?' +
+                        'back_url=' + encodeURIComponent('/boc/hebei_lifecycle/#/coupon?' +
                             'pid=' + sessionStorage.getItem('pid')
                         );
                 } else if (item.pay_type === '1') {
