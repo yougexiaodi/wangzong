@@ -89,6 +89,7 @@
         },
         data() {
             return {
+                pid: sessionStorage.getItem('pid'),
                 loginState: '/api/gdekhback/phone/is_login',
                 dataDetailsUrl: '/api/gdekhback/phone/order_list_all',
                 cancelUrl: '/api/gdekhback/phone/order_cancel',
