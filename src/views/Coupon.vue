@@ -174,7 +174,7 @@
                     window.location.href = '/wxPay/?' +
                         'pid=' + sessionStorage.getItem('pid') + '&' +
                         'order_id=' + item.order_id + '&' +
-                        'gid=' + item.id + '&' +
+                        'gid=' + item.gid + '&' +
                         'wx_id=2'
                 }
             },
