@@ -44,7 +44,7 @@
         CellBox
     } from 'vux'
     import {isLogin, isLoginWxAndLoginWx} from "../utils/login";
-    // TODO 支付
+
     export default {
         components: {
             Group,

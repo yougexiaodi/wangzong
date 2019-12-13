@@ -1,7 +1,7 @@
 <template>
     <div class="gd_home">
         <div v-if="activityListBanner.activity_list && activityListBanner.activity_list.length>0">
-            <l-swiper2 :list="activityListBanner.activity_list" @item-click="go"></l-swiper2>
+            <l-swiper3 :list="activityListBanner.activity_list" @item-click="go"></l-swiper3>
         </div>
         <div class="activity-type activity-type-1"
              v-if="activityListJCKP.activity_list && activityListJCKP.activity_list.length>0">
@@ -74,12 +74,11 @@
         Tab, TabItem, Confirm
     } from 'vux'
     import LSwiper1 from "../components/LSwiper1";
-    import LSwiper2 from "../components/LSwiper2";
+    import LSwiper3 from "../components/LSwiper3";
     //TODO 限时秒杀
-    //TODO Banner特效
     export default {
         components: {
-            LSwiper2,
+            LSwiper3,
             LSwiper1,
             Tabbar,
             TabbarItem,
@@ -147,6 +146,8 @@
                         let message = url.replace(/^s:\/\//g, "");
                         this.showTips(message);
                     }
+                } else {
+                    console.log(item);
                 }
             }
         }
