@@ -4,10 +4,10 @@
             <img src="../assets/yifenqian/bg.jpg" alt="">
             <div class="main">
                 <div class="icon-buy">
-                    <img src="../assets/yifenqian/bg-buy.png" alt="" @click="goBuy">
+                    <img src="../assets/yifenqian/bg-btn-buy.png" alt="" @click="goBuy">
                 </div>
                 <div class="icon-coupon">
-                    <img src="../assets/yifenqian/bg-coupon.png" alt="" @click="goCoupon">
+                    <img src="../assets/yifenqian/bg-btn-coupon.png" alt="" @click="goCoupon">
                 </div>
                 <div class="activity">
                     <div><span class="title">活动对象：</span>河北地区信用卡受邀客户</div>
