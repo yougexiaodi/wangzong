@@ -106,6 +106,7 @@
         }
 
         /deep/ .swiper-pagination {
+            position: relative;
             padding-top: 2vw;
         }
 
