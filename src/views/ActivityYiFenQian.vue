@@ -10,10 +10,18 @@
                     <img src="../assets/yifenqian/bg-btn-coupon.png" alt="" @click="goCoupon">
                 </div>
                 <div class="activity">
-                    <div><span class="title">活动对象：</span>河北地区信用卡受邀客户</div>
-                    <div><span class="title">活动内容：</span>客户在活动页面使用中行信用卡通过手机银行或微信绑定中行信用卡支付1分钱购买15减5微信立减权益代金券（全商户通用），并在商户消费微信支付时选择中行信用卡付款，可享受满额立减优惠，名额有限，先到先得。
+                    <div>
+                        <span class="title">活动对象：</span>
+                        河北地区信用卡受邀客户
                     </div>
-                    <div><span class="title">活动细则：</span>每客户每周1次，代金券7天有效期，逾期作废，所支付1分钱不予退款。</div>
+                    <div>
+                        <span class="title">活动内容：</span>
+                        客户在活动页面使用中行信用卡通过手机银行或者微信绑定中行信用卡支付1分钱可购买5元微信立减全场通用券，并在商户消费，微信支付时选择中行信用卡付款，可享受满15元立减5元优惠，名额有限，先到先得。
+                    </div>
+                    <div>
+                        <span class="title">活动细则：</span>
+                        每客户活动期间可参与一次，代金券7天有效期，逾期作废，所支付的1分钱不予退还。
+                    </div>
                 </div>
             </div>
         </div>
