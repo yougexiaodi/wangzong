@@ -30,6 +30,7 @@
 
 <script>
     import {Group, XInput, XButton, Cell, Divider, Box, cookie} from 'vux'
+    import {isLoginWxAndLoginWx} from "../utils/login";
 
     export default {
         components: {
@@ -43,6 +44,7 @@
         },
         data() {
             return {
+                pid: sessionStorage.getItem('pid'),
                 mobile: '',
                 code: '',
                 verifyCode: '',
@@ -114,11 +116,14 @@
                     pid: sessionStorage.getItem('pid')
                 }).then((res) => {
                     if (res.data.status === 0) {
-                        if (this.$route.query.path === undefined) {
-                            this.$router.push({path: '/'});
-                        } else {
-                            this.$router.go(-1);
-                        }
+                        isLoginWxAndLoginWx(this.pid, this.$route.query.path || "/", this.$route.query).then(res => {
+                            this.$router.push({
+                                path: this.$route.query.path || "/",
+                                query: {
+                                    ...this.$route.query
+                                }
+                            })
+                        });
                     } else {
                         this.$vux.toast.show({text: res.data.info, type: 'warn'});
                     }

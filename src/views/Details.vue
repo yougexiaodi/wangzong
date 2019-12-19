@@ -43,7 +43,7 @@
         PopupPicker,
         CellBox
     } from 'vux'
-    import {isLogin, isLoginWxAndLoginWx} from "../utils/login";
+    import {isLogin} from "../utils/login";
 
     export default {
         components: {
@@ -87,6 +87,9 @@
             }
             this.getDataInfo();
         },
+        destroyed() {
+            this.$vux.loading.hide();
+        },
         methods: {
             getDataInfo() {
                 this.$vux.loading.show({text: '加载中...'});
@@ -108,11 +111,9 @@
                 this.btnLoading = true;
                 this.btnDisabled = true;
                 isLogin(this.pid).then(res => {
-                    isLoginWxAndLoginWx(this.pid, this.$route.path, this.$route.query).then(res => {
-                        this.isShowPayMode = true;
-                        this.btnLoading = false;
-                        this.btnDisabled = false;
-                    })
+                    this.isShowPayMode = true;
+                    this.btnLoading = false;
+                    this.btnDisabled = false;
                 }, res => {
                     this.$router.push({
                         path: '/login',

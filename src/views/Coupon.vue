@@ -66,7 +66,7 @@
         FlexboxItem
     } from 'vux'
     import LBarCode from "../components/LBarCode";
-    import {isLogin, isLoginWxAndLoginWx} from "../utils/login";
+    import {isLogin} from "../utils/login";
 
     export default {
         directives: {
@@ -119,14 +119,15 @@
             }
             this.getLoginState()
         },
+        destroyed() {
+            this.$vux.loading.hide();
+        },
         methods: {
             getLoginState() {
                 this.$vux.loading.show({text: '加载中...'});
                 isLogin(this.pid).then(res => {
-                    isLoginWxAndLoginWx(this.pid, this.$route.path, this.$route.query).then(res => {
-                        this.$vux.loading.hide();
-                        this.getDataDetails();
-                    })
+                    this.$vux.loading.hide();
+                    this.getDataDetails();
                 }, res => {
                     this.$router.push({
                         path: '/login',

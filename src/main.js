@@ -8,6 +8,9 @@ import MuseUI from 'muse-ui'
 import 'muse-ui/dist/muse-ui.css'
 import FastClick from 'fastclick'
 import {AjaxPlugin, WechatPlugin, ConfirmPlugin, LoadingPlugin, ToastPlugin, AlertPlugin, ConfigPlugin} from 'vux'
+// import VConsole from "vconsole"
+//
+// new VConsole();
 
 Vue.use(ConfirmPlugin);
 Vue.use(ConfigPlugin);
