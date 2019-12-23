@@ -150,7 +150,12 @@
                     const _this = this
                     this.$vux.confirm.show({
                         title: '温馨提示',
-                        content: '<p style="color:red;text-align:justify;margin-bottom:1%">请留意选择中行信用卡支付方可享受优惠价(可通过下拉菜单更换支付方式)，确认金额后再进行支付。</p><img id="tipsImg" src="//gdecard.jiahuaming.com/boc/ynbuy/images/other_tips.png" width="100%">',
+                        content: `
+                            <p style="text-align:justify;margin-bottom:1%;color: black;">
+                                优惠立减请选择<span style="color: red;font-weight: 700;">【中国银行信用卡】</span>支付，通过<span style="color: red;font-weight: 700;">下拉菜单更换支付方式</span>，确认金额后完成支付。
+                            </p>
+                            <img id="tipsImg" src="http://gdecard.jiahuaming.com/boc/hebei_lifecycle/img/icon-wx.jpg" width="100%" alt="">
+                        `,
                         onConfirm() {
                             _this.$vux.loading.show({
                                 transition: '',
