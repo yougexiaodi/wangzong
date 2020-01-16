@@ -52,6 +52,26 @@
                 </flexbox-item>
             </flexbox>
         </div>
+        <div class="activity-type activity-type-2"
+             v-if="activityListJNCXHD.activity_list && activityListJNCXHD.activity_list.length>0">
+            <div class="activity-type-title">{{activityListJNCXHD.c_name}}</div>
+            <flexbox :gutter="0" justify="space-between" wrap="wrap">
+                <flexbox-item :span="0.97/2" v-for="item in activityListJNCXHD.activity_list" :key="item.id"
+                              @click="go(item)">
+                    <img :src="item.img_url" alt="" style="width: 100%;border-radius: 1vw;">
+                </flexbox-item>
+            </flexbox>
+        </div>
+        <div class="activity-type activity-type-2"
+             v-if="activityListWLBK.activity_list && activityListWLBK.activity_list.length>0">
+            <div class="activity-type-title">{{activityListWLBK.c_name}}</div>
+            <flexbox :gutter="0" justify="space-between" wrap="wrap">
+                <flexbox-item :span="0.97/2" v-for="item in activityListWLBK.activity_list" :key="item.id"
+                              @click="go(item)">
+                    <img :src="item.img_url" alt="" style="width: 100%;border-radius: 1vw;">
+                </flexbox-item>
+            </flexbox>
+        </div>
     </div>
 </template>
 
@@ -106,6 +126,8 @@
                 activityListHDZQ: {},
                 activityListXHMS: {},
                 activityListJRZC: {},
+                activityListJNCXHD: {},
+                activityListWLBK: {},
                 getDataUrl: '/api/gdekhback/phone/activity_list',
             }
         },
@@ -127,11 +149,13 @@
                     }
                 }).then((res) => {
                     if (res.data.status === 1) {
-                        this.activityListBanner = res.data.data[93] || {};
-                        this.activityListJCKP = res.data.data[89] || {};
-                        this.activityListHDZQ = res.data.data[90] || {};
-                        this.activityListXHMS = res.data.data[91] || {};
-                        this.activityListJRZC = res.data.data[92] || {};
+                        // this.activityListBanner = res.data.data[93] || {};
+                        // this.activityListJCKP = res.data.data[89] || {};
+                        // this.activityListHDZQ = res.data.data[90] || {};
+                        // this.activityListXHMS = res.data.data[91] || {};
+                        // this.activityListJRZC = res.data.data[92] || {};
+                        this.activityListJNCXHD = res.data.data[107] || {};
+                        this.activityListWLBK = res.data.data[108] || {};
                     }
                 });
             },
@@ -160,12 +184,11 @@
     }
 
     .activity-type {
-        border-top: #f3f5f7 solid 1.6vw;
+        border-bottom: #f3f5f7 solid 1.6vw;
         padding: 0 4vw 2vw;
 
         .activity-type-title {
-            margin-top: 3vw;
-            margin-bottom: 3vw;
+            padding: 3vw 0;
 
             font-size: 4.3vw;
             line-height: 6.1vw;
@@ -222,6 +245,12 @@
                 font-size: 2.4vw;
                 color: #f8434d;
             }
+        }
+    }
+
+    .activity-type {
+        /deep/ .vux-flexbox-item:last-child.vux-flexbox-item:nth-child(odd) {
+            flex: 0 0 100% !important;
         }
     }
 
