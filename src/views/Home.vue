@@ -56,9 +56,8 @@
              v-if="activityListJNCXHD.activity_list && activityListJNCXHD.activity_list.length>0">
             <div class="activity-type-title">{{activityListJNCXHD.c_name}}</div>
             <flexbox :gutter="0" justify="space-between" wrap="wrap">
-                <flexbox-item :span="0.97/2" v-for="item in activityListJNCXHD.activity_list" :key="item.id"
-                              @click="go(item)">
-                    <img :src="item.img_url" alt="" style="width: 100%;border-radius: 1vw;">
+                <flexbox-item :span="0.97/2" v-for="item in activityListJNCXHD.activity_list" :key="item.id">
+                    <img :src="item.img_url" alt="" style="width: 100%;border-radius: 1vw;" @click="go(item)">
                 </flexbox-item>
             </flexbox>
         </div>
@@ -66,9 +65,8 @@
              v-if="activityListWLBK.activity_list && activityListWLBK.activity_list.length>0">
             <div class="activity-type-title">{{activityListWLBK.c_name}}</div>
             <flexbox :gutter="0" justify="space-between" wrap="wrap">
-                <flexbox-item :span="0.97/2" v-for="item in activityListWLBK.activity_list" :key="item.id"
-                              @click="go(item)">
-                    <img :src="item.img_url" alt="" style="width: 100%;border-radius: 1vw;">
+                <flexbox-item :span="0.97/2" v-for="item in activityListWLBK.activity_list" :key="item.id">
+                    <img :src="item.img_url" alt="" style="width: 100%;border-radius: 1vw;" @click="go(item)">
                 </flexbox-item>
             </flexbox>
         </div>

@@ -8,7 +8,7 @@ export default new Router({
         {
             path: '/',
             name: 'Home',
-            redirect: "/activityYiFenQian",
+            // redirect: "/activityYiFenQian", // 活动结束
             component: () => import('@/views/Home')
         },
         { // 首页别名入口
