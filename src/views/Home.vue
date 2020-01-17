@@ -70,6 +70,42 @@
                 </flexbox-item>
             </flexbox>
         </div>
+        <div class="activity-type activity-type-2"
+             v-if="activityList109.activity_list && activityList109.activity_list.length>0">
+            <div class="activity-type-title">{{activityList109.c_name}}</div>
+            <flexbox :gutter="0" justify="space-between" wrap="wrap">
+                <flexbox-item :span="0.97/2" v-for="item in activityList109.activity_list" :key="item.id">
+                    <img :src="item.img_url" alt="" style="width: 100%;border-radius: 1vw;" @click="go(item)">
+                </flexbox-item>
+            </flexbox>
+        </div>
+        <div class="activity-type activity-type-2"
+             v-if="activityList110.activity_list && activityList110.activity_list.length>0">
+            <div class="activity-type-title">{{activityList110.c_name}}</div>
+            <flexbox :gutter="0" justify="space-between" wrap="wrap">
+                <flexbox-item :span="0.97/2" v-for="item in activityList110.activity_list" :key="item.id">
+                    <img :src="item.img_url" alt="" style="width: 100%;border-radius: 1vw;" @click="go(item)">
+                </flexbox-item>
+            </flexbox>
+        </div>
+        <div class="activity-type activity-type-2"
+             v-if="activityList111.activity_list && activityList111.activity_list.length>0">
+            <div class="activity-type-title">{{activityList111.c_name}}</div>
+            <flexbox :gutter="0" justify="space-between" wrap="wrap">
+                <flexbox-item :span="0.97/2" v-for="item in activityList111.activity_list" :key="item.id">
+                    <img :src="item.img_url" alt="" style="width: 100%;border-radius: 1vw;" @click="go(item)">
+                </flexbox-item>
+            </flexbox>
+        </div>
+        <div class="activity-type activity-type-2"
+             v-if="activityList112.activity_list && activityList112.activity_list.length>0">
+            <div class="activity-type-title">{{activityList112.c_name}}</div>
+            <flexbox :gutter="0" justify="space-between" wrap="wrap">
+                <flexbox-item :span="0.97/2" v-for="item in activityList112.activity_list" :key="item.id">
+                    <img :src="item.img_url" alt="" style="width: 100%;border-radius: 1vw;" @click="go(item)">
+                </flexbox-item>
+            </flexbox>
+        </div>
     </div>
 </template>
 
@@ -126,6 +162,10 @@
                 activityListJRZC: {},
                 activityListJNCXHD: {},
                 activityListWLBK: {},
+                activityList109: {},
+                activityList110: {},
+                activityList111: {},
+                activityList112: {},
                 getDataUrl: '/api/gdekhback/phone/activity_list',
             }
         },
@@ -154,6 +194,10 @@
                         // this.activityListJRZC = res.data.data[92] || {};
                         this.activityListJNCXHD = res.data.data[107] || {};
                         this.activityListWLBK = res.data.data[108] || {};
+                        this.activityList109 = res.data.data[109] || {};
+                        this.activityList110 = res.data.data[110] || {};
+                        this.activityList111 = res.data.data[111] || {};
+                        this.activityList112 = res.data.data[112] || {};
                     }
                 });
             },
