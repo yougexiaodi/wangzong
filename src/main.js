@@ -34,10 +34,8 @@ router.beforeEach((to, before, next) => {
       window.scrollTo(0, 0);
     }
     if(to.fullPath == '/activityYiqing'){
-        pageSize(window, document, 0);
         sessionStorage.setItem('bgc',true);
     } else {
-        pageSize(window, document, 1);
         sessionStorage.setItem('bgc',false);
     }
     next()

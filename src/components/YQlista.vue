@@ -68,38 +68,15 @@ export default {
     text-align: center;
 }
 .yqlista_content .pic{
-    width: 5.41rem;
+    width: 5.42rem;
     display: block;
 }
 .li_icon{
     width: 5.42rem;
     background-color: #ffffff;
-    padding: 0 0.3rem 0.3rem;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
+    padding: 0.3rem 0 0.5rem 0;
     margin: 0 auto;
-    display: -webkit-flex;
-    display: flex;
-     -webkit-justify-content: space-around;
-    justify-content: space-around;
-}
-.li_icon li{
-    width: 1.7rem;
-    height: 2.12rem;
-}
-.li_icon li img{
-    display: block;
-    width: 1.23rem;
-    height: 1.23rem;
-    margin: 0 auto;
-}
-.li_icon li p{
-    width: 100%;
-    height: 0.89rem;
-    line-height: 0.89rem;
-    text-align: center;
-    color: #222222;
-    font-size: 0.32rem;
+
 }
 .mask{
     position: absolute;

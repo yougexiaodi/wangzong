@@ -1,5 +1,5 @@
 <template>
-    <div id="app" :class="{ bgc: bgc == true }">
+    <div id="app" :class="{ 'bgc': is_bgc == true }">
         <router-view/>
         <l-nav-footer></l-nav-footer>
     </div>
@@ -17,11 +17,12 @@
         },
         data() {
             return {
-                bgc: sessionStorage.getItem('bgc'),
+                is_bgc: '',
                 pid: sessionStorage.getItem('pid')
             }
         },
         mounted() {
+            this.is_bgc = sessionStorage.getItem('bgc')
         },
         methods: {}
     }

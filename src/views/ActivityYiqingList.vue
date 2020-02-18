@@ -38,7 +38,7 @@
         },
         methods: {
             goHome(){
-                this.$route.push('/activityYiqingList')
+                this.$router.push('/activityYiqing')
             },
             toDetail(id){
                 this.$router.push({
@@ -71,6 +71,9 @@
     }
 </script>
 <style scoped>
+.coupon{
+    padding-bottom: 0.2rem;
+}
     .coupon .list {
         margin-top: -1px;
         padding: 10px;
