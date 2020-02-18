@@ -4,6 +4,42 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
     <title>河北惠聚中行日福利嗨翻天</title>
+    <script>
+        function pageSize (win, doc, type) {
+			var html = document.documentElement;
+			var w = html.clientWidth;
+			function setFont(w) {
+				html.style.fontSize = w / 750 * 100 + "px";
+			}
+			function getPageWidth(){
+                var w1 = html.clientWidth;
+				if(w != w1){
+					setFont(w1)
+				} else {
+					setFont(w);
+				}
+            }
+            function cancelFontSize(){
+                html.style.fontSize = '';
+                doc.removeEventListener('DOMContentLoaded', getPageWidth);
+                win.removeEventListener('resize', getPageWidth);
+                win.removeEventListener('load', getPageWidth);
+            }
+            function addFontSize(){
+                getPageWidth();
+                doc.addEventListener('DOMContentLoaded', getPageWidth,false);
+			    win.addEventListener('resize', getPageWidth,false);
+			    win.addEventListener('load', getPageWidth,false);
+            }
+            if(type == 0){
+                addFontSize();
+            } else {
+                cancelFontSize();
+            }
+			
+        }
+        
+    </script>
 </head>
 <body>
 <div id="app"></div>

@@ -11,6 +11,7 @@ import {AjaxPlugin, WechatPlugin, ConfirmPlugin, LoadingPlugin, ToastPlugin, Ale
 // import VConsole from "vconsole"
 //
 // new VConsole();
+import wx from 'weixin-js-sdk'
 
 Vue.use(ConfirmPlugin);
 Vue.use(ConfigPlugin);
@@ -24,9 +25,23 @@ Vue.use(MuseUI);
 FastClick.attach(document.body);
 Vue.prototype.$http = axios;
 Vue.config.productionTip = false;
+Vue.prototype.wx = wx
 
 sessionStorage.setItem('pid', 100);
-
+router.beforeEach((to, before, next) => {
+    if (to.meta.title) {
+      document.title = to.meta.title;
+      window.scrollTo(0, 0);
+    }
+    if(to.fullPath == '/activityYiqing'){
+        pageSize(window, document, 0);
+        sessionStorage.setItem('bgc',true);
+    } else {
+        pageSize(window, document, 1);
+        sessionStorage.setItem('bgc',false);
+    }
+    next()
+  })
 /* eslint-disable no-new */
 new Vue({
     el: '#app',

@@ -1,5 +1,5 @@
 <template>
-    <div id="app">
+    <div id="app" :class="{ bgc: bgc == true }">
         <router-view/>
         <l-nav-footer></l-nav-footer>
     </div>
@@ -17,6 +17,7 @@
         },
         data() {
             return {
+                bgc: sessionStorage.getItem('bgc'),
                 pid: sessionStorage.getItem('pid')
             }
         },
@@ -35,5 +36,8 @@
 
     .full_img {
         width: 100%;
+    }
+    .bgc{
+        background-color: #a00b0d;
     }
 </style>

@@ -8,7 +8,7 @@ export default new Router({
         {
             path: '/',
             name: 'Home',
-            // redirect: "/activityYiFenQian", // 活动结束
+            // redirect: "/activityYiqing",
             component: () => import('@/views/Home')
         },
         { // 首页别名入口
@@ -65,6 +65,20 @@ export default new Router({
             component: () => import('../views/ActivityYiFenQian.vue'),
             meta: {
                 hiddenFooterMenu: true
+            }
+        },
+        { // 疫情专区
+            path: '/activityYiqing',
+            component: () => import('../views/ActivityYiqing'),
+            meta: {
+                hiddenFooterMenu: false
+            }
+        },
+        { // 疫情专区商圈列表
+            path: '/activityYiqingList',
+            component: () => import('../views/ActivityYiqingList'),
+            meta: {
+                hiddenFooterMenu: false
             }
         },
     ]
