@@ -190,9 +190,9 @@
         text-align: justify;
     }
 
-    .content img {
+    .content p img {
         margin-top: 10px;
-        width: 30%;
+        width: 100%;
     }
 
     .content p {
