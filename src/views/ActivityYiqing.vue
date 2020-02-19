@@ -17,10 +17,10 @@ export default {
     mounted(){
         sessionStorage.setItem('pid', 100);
         this.$vux.loading.show({text: '加载中...'});
-        this.wxshare(this,{
+        this.wxshare({
             title:'共战疫情 中行5折力挺',
             desc:'中行信用卡福利送上，隔离病毒·不隔离爱，共同战疫我们能赢！',
-            imgUrl: '../assets/yiqing/share.jpg',
+            imgUrl: '//gdecard.jiahuaming.com/boc/hebei_lifecycle/static/img/share.jpg',
             urls:encodeURI(window.location.href),
         });
         this.getList();
