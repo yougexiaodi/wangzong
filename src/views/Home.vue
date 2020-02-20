@@ -187,7 +187,7 @@
                     }
                 }).then((res) => {
                     if (res.data.status === 1) {
-                        // this.activityListBanner = res.data.data[93] || {};
+                        this.activityListBanner = res.data.data[93] || {};
                         // this.activityListJCKP = res.data.data[89] || {};
                         // this.activityListHDZQ = res.data.data[90] || {};
                         // this.activityListXHMS = res.data.data[91] || {};
