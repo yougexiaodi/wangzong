@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="details_banner">
-            <img :src="dataInfo.list_img" alt="">
+            <img :src="dataInfo.detail_img" alt="">
         </div>
         <group>
             <cell title="剩余数量">{{dataInfo.now_num}} 张</cell>
