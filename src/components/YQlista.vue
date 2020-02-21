@@ -5,7 +5,7 @@
             <h3 class="title">{{item.name}}</h3>
         </div>
         <div class="yqlista_content">
-            <div class="li_icon">
+            <div class="li_icon" @click="goBuy(item.id)">
                 <img :src="item.pic" alt="" class="pic">
             </div>
             <!-- <ul class="li_icon">
