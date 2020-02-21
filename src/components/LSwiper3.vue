@@ -35,11 +35,11 @@
                 loop: true,
                 loopedSlides: 5,
                 slidesPerView: 'auto',
-                autoplay: {
-                    delay: 3000,
-                    stopOnLastSlide: false,
-                    disableOnInteraction: false,
-                },
+                // autoplay: {
+                //     delay: 3000,
+                //     stopOnLastSlide: false,
+                //     disableOnInteraction: false,
+                // },
                 centeredSlides: true,
                 // initialSlide: 2,
                 watchSlidesProgress: true,
