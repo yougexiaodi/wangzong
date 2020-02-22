@@ -61,11 +61,16 @@
             return {
                 pid: sessionStorage.getItem('pid'),
                 id: this.$route.query.id,
+                // selectPay: [{
+                //     icon: '//gdecard.jiahuaming.com/boc/gd8buy/assets/images/boc_logo.png',
+                //     key: '1',
+                //     value: '手机银行'
+                // }, {
+                //     icon: '//gdecard.jiahuaming.com/boc/gd8buy/assets/images/wepay_logo.png',
+                //     key: '2',
+                //     value: '微信支付'
+                // }],
                 selectPay: [{
-                    icon: '//gdecard.jiahuaming.com/boc/gd8buy/assets/images/boc_logo.png',
-                    key: '1',
-                    value: '手机银行'
-                }, {
                     icon: '//gdecard.jiahuaming.com/boc/gd8buy/assets/images/wepay_logo.png',
                     key: '2',
                     value: '微信支付'
