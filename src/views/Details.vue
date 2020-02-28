@@ -78,7 +78,8 @@
                 btnDisabled: false,
                 dataUrl: '/api/gdekhback/special/goods_detail_sc',
                 buyUrl: '/api/gdekhback/phone/hebei_lifecycle_boc_pay',
-                dataInfo: {}
+                dataInfo: {},
+                aid:null
             }
         },
         mounted() {
@@ -111,11 +112,15 @@
                 this.btnLoading = true;
                 this.btnDisabled = true;
                 isLogin(this.pid).then(res => {
-                    // this.isShowPayMode = true;
-                    this.btnLoading = false;
-                    this.btnDisabled = false;
-                    this.payment = '2';
-                    this.payModeConfirm();
+                    if(this.dataInfo.aid == 365){
+                        this.isShowPayMode = true;
+                    }else{
+                        this.btnLoading = false;
+                        this.btnDisabled = false;
+                        this.payment = '2';
+                        this.payModeConfirm();
+                    }
+                    
                 }, res => {
                     this.$router.push({
                         path: '/login',
@@ -163,7 +168,7 @@
                                 transition: '',
                                 text: '订单生成中'
                             })
-                            let url = '/wxPay' + '?' +
+                            let url = '/wxPay/' + '?' +
                                 'pid=' + _this.pid + '&' +
                                 'mid=' + _this.dataInfo.mid + '&' +
                                 'gid=' + _this.id + '&' +
