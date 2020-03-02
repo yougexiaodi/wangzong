@@ -82,13 +82,14 @@
                 btnDisabled: false,
                 dataUrl: '/api/gdekhback/special/goods_detail_sc',
                 buyUrl: '/api/gdekhback/phone/hebei_lifecycle_boc_pay',
-                ylUrl:'/api/gdekhback/Phone/hebei_unionpay',
-                dataInfo: {}
+                ylUrl:'/api/gdekhback/phone/hebei_unionpay',
+                dataInfo: {},
+                aid:null
             }
         },
         mounted() {
             if (this.$route.query.err) {
-                this.$vux.toast.show({text: this.$route.query.err, type: 'warn', width: '5rem', time: '5000'});
+                this.$vux.toast.show({text: this.$route.query.err, type: 'warn', width: '12em', time: '5000'});
             }
             this.getDataInfo();
         },
@@ -116,9 +117,14 @@
                 this.btnLoading = true;
                 this.btnDisabled = true;
                 isLogin(this.pid).then(res => {
-                    this.isShowPayMode = true;
-                    this.btnLoading = false;
-                    this.btnDisabled = false;
+                    if(this.dataInfo.aid == 365){
+                        this.isShowPayMode = true;
+                    }else{
+                        this.isShowPayMode = true;
+                        this.btnLoading = false;
+                        this.btnDisabled = false;
+                    }
+                    
                 }, res => {
                     this.$router.push({
                         path: '/login',
@@ -131,30 +137,30 @@
             },
             payModeConfirm() {
                 this.isShowPayMode = false;
-                if(this.payment == '1'){//银联支付
-                this.$http.post(this.ylUrl, {
-                    pid: this.pid,
-                    gid: this.id,
-                }).then(res => {
-                    if (res.data.status == 0) {
-                        window.location.href = `/unionpay/no_jump/#/?pid=${this.pid}&orderId=${res.data.info}`;
-                    } else {
+                 if(this.payment == '1'){//银联支付
+                    this.$http.post(this.ylUrl, {
+                        pid: this.pid,
+                        gid: this.id,
+                    }).then(res => {
+                        if (res.data.status == 0) {
+                            window.location.href = `/unionpay/no_jump/#/?pid=${this.pid}&orderId=${res.data.info}`;
+                        } else {
+                            this.$vux.toast.show({
+                                text: res.data.info,
+                                type: "warn",
+                                width: "5rem",
+                                time: "3000"
+                            });
+                        }
+                    }).catch(err=>{
                         this.$vux.toast.show({
-                            text: res.data.info,
+                            text: err,
                             type: "warn",
                             width: "5rem",
                             time: "3000"
                         });
-                    }
-                }).catch(err=>{
-                    this.$vux.toast.show({
-                        text: err,
-                        type: "warn",
-                        width: "5rem",
-                        time: "3000"
-                    });
-                })
-            } else if (this.payment === '2') {
+                    })
+                } else if (this.payment === '2') {
                     const _this = this
                     this.$vux.confirm.show({
                         title: '温馨提示',
@@ -182,7 +188,7 @@
                             <p style="text-align:justify;margin-bottom:1%;color: black;">
                                 优惠立减请选择<span style="color: red;font-weight: 700;">【中国银行信用卡】</span>支付，通过<span style="color: red;font-weight: 700;">下拉菜单更换支付方式</span>，确认金额后完成支付。
                             </p>
-                            <img id="tipsImg" src="//gdecard.jiahuaming.com/boc/hebei_lifecycle/img/icon-wx.jpg" width="100%" alt="">
+                            <img id="tipsImg" src="http://gdecard.jiahuaming.com/boc/hebei_lifecycle/img/icon-wx.jpg" width="100%" alt="">
                         `,
                         onConfirm() {
                             _this.$vux.loading.show({
@@ -202,7 +208,7 @@
                         }
                     })
                 } else {
-                    this.$vux.toast.show({text: '请选择支付方式', type: 'warn', width: '5rem'})
+                    this.$vux.toast.show({text: '请选择支付方式', type: 'warn', width: '10em'})
                 }
             },
         }

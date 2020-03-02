@@ -1,6 +1,6 @@
 <template>
     <div>
-        <img src="../assets/banner-login.jpg" alt="" width="100%">
+        <img src="../assets/banner-login.png" alt="" width="100%">
         <divider>请登录</divider>
         <group>
             <x-input mask="999 9999 9999" placeholder="请输入手机号码" v-model="mobile" :max="13" is-type="china-mobile">
