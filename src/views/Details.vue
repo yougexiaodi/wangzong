@@ -62,14 +62,14 @@
                 pid: sessionStorage.getItem('pid'),
                 id: this.$route.query.id,
                 selectPay: [{
-                    icon: require('../assets/yiqing/yinlian.png'),
-                    key: '1',
-                    value: '银联支付'
-                },{
                     icon: '//gdecard.jiahuaming.com/boc/gd8buy/assets/images/boc_logo.png',
-                    key: '2',
+                    key: '1',
                     value: '手机银行'
                 }, {
+                    icon: require('../assets/yiqing/yinlian.png'),
+                    key: '2',
+                    value: '银联支付'
+                },{
                     icon: '//gdecard.jiahuaming.com/boc/gd8buy/assets/images/wepay_logo.png',
                     key: '3',
                     value: '微信支付'
@@ -108,7 +108,6 @@
                         this.can_buy = res.data.can_buy;
                         this.msg = res.data.msg;
                         this.dataInfo = res.data.info;
-
                         this.$vux.loading.hide();
                     }
                 })
@@ -117,14 +116,13 @@
                 this.btnLoading = true;
                 this.btnDisabled = true;
                 isLogin(this.pid).then(res => {
-                    if(this.dataInfo.aid == 365){
-                        this.isShowPayMode = true;
+                    if(this.dataInfo.aid == '365'){
+                        this.selectPay.splice(1,1);
                     }else{
-                        this.isShowPayMode = true;
                         this.btnLoading = false;
                         this.btnDisabled = false;
                     }
-                    
+                    this.isShowPayMode = true;
                 }, res => {
                     this.$router.push({
                         path: '/login',
@@ -137,7 +135,7 @@
             },
             payModeConfirm() {
                 this.isShowPayMode = false;
-                 if(this.payment == '1'){//银联支付
+                 if(this.payment === '2'){//银联支付
                     this.$http.post(this.ylUrl, {
                         pid: this.pid,
                         gid: this.id,
@@ -160,7 +158,7 @@
                             time: "3000"
                         });
                     })
-                } else if (this.payment === '2') {
+                } else if (this.payment === '1') {
                     const _this = this
                     this.$vux.confirm.show({
                         title: '温馨提示',
