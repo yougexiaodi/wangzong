@@ -179,6 +179,8 @@
                         'order_id=' + item.order_id + '&' +
                         'gid=' + item.gid + '&' +
                         'wx_id=2'
+                } else if(item.pay_type === '3'){
+                    window.location.href = '/unionpay/no_jump/#/?pid='+item.pid+'&orderId='+item.order_id;
                 }
             },
             cancelOrder(item) {
