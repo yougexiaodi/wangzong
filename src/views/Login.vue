@@ -116,13 +116,17 @@
                     pid: sessionStorage.getItem('pid')
                 }).then((res) => {
                     if (res.data.status === 0) {
-                        isLoginWxAndLoginWx(this.pid, this.$route.query.path || "/", this.$route.query).then(res => {
-                            this.$router.push({
-                                path: this.$route.query.path || "/",
-                                query: {
-                                    ...this.$route.query
-                                }
-                            })
+                        isLoginWxAndLoginWx(this.pid, this.$route.query.path || this.$route.query.backUrl || "/", this.$route.query).then(res => {
+                            if(this.$route.query.backUrl){
+                                window.location.href = this.$route.query.backUrl;
+                            } else {
+                                this.$router.push({
+                                    path: this.$route.query.path || "/",
+                                    query: {
+                                        ...this.$route.query
+                                    }
+                                })
+                            }
                         });
                     } else {
                         this.$vux.toast.show({text: res.data.info, type: 'warn'});
