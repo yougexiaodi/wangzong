@@ -171,8 +171,8 @@
         },
         mounted: function () {
             const backUrl = this.$route.query.backUrl;
-            if(backUrl){
-                window.location.href = backUrl;
+            if(backUrl == 'hebei_manghe'){
+                window.location.href = '/boc/hebei_manghe/#/homeround';
                 return;
             }
             this.getBannerList()
