@@ -170,6 +170,11 @@
             }
         },
         mounted: function () {
+            const backUrl = this.$route.query.backUrl;
+            if(backUrl){
+                window.location.href = backUrl;
+                return;
+            }
             this.getBannerList()
         },
         methods: {
