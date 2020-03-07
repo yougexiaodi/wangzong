@@ -116,7 +116,7 @@
                     pid: sessionStorage.getItem('pid')
                 }).then((res) => {
                     if (res.data.status === 0) {
-                        isLoginWxAndLoginWx(this.pid, this.$route.query.path || this.$route.query.backUrl || "/", this.$route.query).then(res => {
+                        isLoginWxAndLoginWx(this.pid, this.$route.query.backUrl || (this.$route.query.path  || "/"), this.$route.query).then(res => {
                             if(this.$route.query.backUrl){
                                 window.location.href = this.$route.query.backUrl;
                             } else {
