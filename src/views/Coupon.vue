@@ -147,7 +147,9 @@
                 }).then((res) => {
                     if (res.data.status === 0) {
                         if (res.data.info.length !== 0) {
-                            this.couponList = res.data.info;
+                            this.couponList = res.data.info.filter(item=>{
+                                return item.aid !== '411'
+                            });
                         } else {
                             this.$vux.alert.show({
                                 title: '提示',
