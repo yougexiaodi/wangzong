@@ -20,7 +20,8 @@
                     </div>
                     <div>
                         <span class="title">活动细则：</span>
-                        每客户活动期间可参与一次，代金券2020年3月15日有效，逾期作废，所支付的1分钱不予退还。
+                       每客户活动期间可参与一次，代继券2020年3月27日内有效，逾期作废。所支付1分钱不予退还。
+                    3月8日前购买的客户，券码有效期到3月15日内有效，请尽快使用。
                     </div>
                 </div>
             </div>
@@ -54,7 +55,8 @@
     .yifenqian {
         min-height: 100vh;
         background: url("../assets/yifenqian/bg-line.jpg");
-
+        overflow-y: scroll;
+        padding-bottom: 20px;
         .rel {
             position: relative;
 
