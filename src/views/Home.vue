@@ -52,7 +52,7 @@
                 </flexbox-item>
             </flexbox>
         </div>
-        <div class="activity-type activity-type-2"
+        <div class="activity-type activity-type-2 jckp"
              v-if="activityListJNCXHD.activity_list && activityListJNCXHD.activity_list.length>0">
             <div class="activity-type-title">{{activityListJNCXHD.c_name}}</div>
             <flexbox :gutter="0" justify="space-between" wrap="wrap">
@@ -293,6 +293,16 @@
     .activity-type {
         /deep/ .vux-flexbox-item:last-child.vux-flexbox-item:nth-child(odd) {
             flex: 0 0 100% !important;
+        }
+    }
+
+    .jckp {
+        /deep/ .vux-flexbox .vux-flexbox-item:first-child {
+            flex: 0 0 100% !important;
+        }
+
+        /deep/ .vux-flexbox-item:last-child.vux-flexbox-item:nth-child(odd) {
+            flex: 0 0 48.5% !important;
         }
     }
 
