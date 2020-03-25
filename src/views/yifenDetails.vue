@@ -115,7 +115,7 @@
                 this.btnDisabled = true;
                 isLogin(this.pid).then(res => {
                     if(this.dataInfo.aid == '365'){
-                        this.selectPay.splice(1,1);
+                        // this.selectPay.splice(1,1);
                     }else{
                         this.btnLoading = false;
                         this.btnDisabled = false;
