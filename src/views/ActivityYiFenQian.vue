@@ -37,7 +37,7 @@
         methods: {
             goBuy() {
                 this.$router.push({
-                    path: "/details",
+                    path: "/yifendetails",
                     query: {
                         id: 3699
                     }

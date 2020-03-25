@@ -26,6 +26,11 @@ export default new Router({
             component: () => import('@/views/Details')
         },
         {
+            path: '/yifendetails',
+            name: 'Details',
+            component: () => import('@/views/yifenDetails')
+        },
+        {
             path: '/login',
             name: 'Login',
             component: () => import('@/views/Login')
