@@ -169,7 +169,7 @@
                                 'pid=' + _this.pid + '&' +
                                 'gid=' + _this.id + '&' +
                                 'code_type=' + _this.$route.query.code_type + '&' +
-                                'back_url=' + encodeURIComponent('/boc/hebei_lifecycle/#/details?' +
+                                'back_url=' + encodeURIComponent('/boc/hebei_lifecycle/#/yifendetails?' +
                                     'id=' + _this.id + '&' +
                                     'code_type=' + _this.$route.query.code_type
                                 )
@@ -196,7 +196,7 @@
                                 'mid=' + _this.dataInfo.mid + '&' +
                                 'gid=' + _this.id + '&' +
                                 'code_type=' + _this.$route.query.code_type + '&' +
-                                'back_url=' + encodeURIComponent('/boc/hebei_lifecycle/#/details?' +
+                                'back_url=' + encodeURIComponent('/boc/hebei_lifecycle/#/yifendetails?' +
                                     'id=' + _this.id + '&' +
                                     'code_type=' + _this.$route.query.code_type
                                 );
