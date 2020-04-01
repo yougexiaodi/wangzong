@@ -4,7 +4,8 @@
             <img :src="dataInfo.detail_img" alt="">
         </div>
         <group>
-            <cell title="剩余数量">{{Math.ceil(dataInfo.now_num / 10)}} 张</cell>
+            <!-- <cell title="剩余数量">{{Math.ceil(dataInfo.now_num / 10)}} 张</cell> -->
+            <cell title="剩余数量">{{dataInfo.now_num}} 张</cell>
             <cell title="支付金额">
                 <p style="color:#bb012d">{{dataInfo.price}}元</p>
             </cell>
@@ -70,11 +71,11 @@
                     key: '2',
                     value: '银联支付'
                 },
-                // {
-                //     icon: '//gdecard.jiahuaming.com/boc/gd8buy/assets/images/wepay_logo.png',
-                //     key: '3',
-                //     value: '微信支付'
-                // }
+                {
+                    icon: '//gdecard.jiahuaming.com/boc/gd8buy/assets/images/wepay_logo.png',
+                    key: '3',
+                    value: '微信支付'
+                }
                 ],
                 payment: '1',
                 msg: '',
