@@ -125,7 +125,10 @@
                         this.btnLoading = false;
                         this.btnDisabled = false;
                     }
-                    this.isShowPayMode = true;
+                    // this.isShowPayMode = true;
+                    //微信支付
+                    this.payment = '3';
+                    this.payModeConfirm();
                 }, res => {
                     this.$router.push({
                         path: '/login',
