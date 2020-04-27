@@ -23,7 +23,10 @@ export default new Router({
         {
             path: '/details',
             name: 'Details',
-            component: () => import('@/views/Details')
+            component: () => import('@/views/Details'),
+            // meta: {
+            //     hiddenFooterMenu: true
+            // }
         },
         {
             path: '/yifendetails',
@@ -84,6 +87,13 @@ export default new Router({
             component: () => import('../views/ActivityYiqingList'),
             meta: {
                 hiddenFooterMenu: false
+            }
+        },
+        { // 疫情专区商圈列表
+            path: '/HbFive',
+            component: () => import('../views/Hb_Five'),
+            meta: {
+                hiddenFooterMenu: true
             }
         },
     ]
