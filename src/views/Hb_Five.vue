@@ -6,7 +6,7 @@
                     <h4 class="title">{{item.name}}</h4>
                     <div class="goods-list">
                         <div class="goods-item" v-for="(items,index) in item.goods_list" :key="index">
-                            <img :src="items.list_img" alt="">
+                            <img :src="items.list_img_long" alt="">
                             <span>{{items.tags}}</span>
                             <h5>{{items.name}}</h5>
                             <i class="btn" @click="goodsId=items.id" :class="{'active':goodsId==items.id}"></i>
@@ -101,8 +101,9 @@ export default {
     // width: 100px;
     height: 134px;
     width: 32%;
+    // min-width: 32%;
     background: url(./../assets/images/item-bg.png) no-repeat center;
-    background-size: 100% 100%;
+    background-size: calc(~"100% - 1px") 134px;
     margin: 0 4px 25px 0;
     display: flex;
     flex-direction: column;
@@ -111,9 +112,9 @@ export default {
         margin-right: 0;
     }
     img{
-        height: 37px;
+        height: 40px;
         max-width: 100%;
-        margin-top: 8px;
+        margin-top: 4px;
     }
     span{
         font-size: 12px;
@@ -135,8 +136,8 @@ export default {
     }
     .btn{
         display: block;
-        width: 30px;
-        height: 30px;
+        width: 24px;
+        height: 24px;
         background: url(./../assets/images/btn.png) no-repeat center;
         background-size: 100% 100%;
         &.active{
