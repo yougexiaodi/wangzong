@@ -1,12 +1,15 @@
 <template>
     <div class="home-container">
         <div class="container">
+            <div class="icon"></div>
             <div class="active-item" v-for="(item,index) in list" :key="index">
                 <div class="active-con" >
                     <h4 class="title">{{item.name}}</h4>
                     <div class="goods-list">
                         <div class="goods-item" v-for="(items,index) in item.goods_list" :key="index">
-                            <img :src="items.list_img_long" alt="">
+                            <div class="cover-img">
+                                <img :src="items.list_img_long" alt="">
+                            </div>
                             <span>{{items.tags}}</span>
                             <h5>{{items.name}}</h5>
                             <i class="btn" @click="goodsId=items.id" :class="{'active':goodsId==items.id}"></i>
@@ -19,7 +22,6 @@
     </div>
 </template>
 <script>
-
 export default {
     data(){
         return{
@@ -52,7 +54,8 @@ export default {
                 }
             })
         }
-    }
+    },
+    
 }
 </script>
 <style lang="less" scoped>
@@ -61,6 +64,7 @@ export default {
     overflow-y: scroll;
 }
 .container{
+    position: relative;
     padding-top: 338px;
     background:#25c082 url(./../assets/images/home-bg.png) no-repeat top center;
     background-size: 100% auto;
@@ -68,7 +72,7 @@ export default {
 }
 .active-item{
     background: url(./../assets/images/item-top.png) no-repeat top center;
-    background-size: 360px auto;
+    background-size: 100% auto;
     padding-top: 20px;
     margin-top: 30px;
 }
@@ -111,11 +115,6 @@ export default {
     &:nth-child(3n){
         margin-right: 0;
     }
-    img{
-        height: 40px;
-        max-width: 100%;
-        margin-top: 4px;
-    }
     span{
         font-size: 12px;
         color: #262626;
@@ -146,6 +145,19 @@ export default {
         }
     }
 }
+.cover-img{
+    height: 40px;
+    width: calc(~"100% - 3px");
+    margin: 4px 2px 0 0;
+    overflow: hidden;
+    margin-top: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    img{
+        height: 100%;
+    }
+}
 .buy-btn{
     width: 266px;
     height: 47px;
@@ -157,5 +169,14 @@ export default {
     color: #ffffff;
     font-size: 18px;
     box-shadow: 6px 0 22px rgba(37, 192, 130, .29);
+}
+.icon{
+    position: absolute;
+    width: 90px;
+    height: 90px;
+    background: url(./../assets/images/icon.png) no-repeat top center;
+    background-size: 100% ;
+    top: 320px;
+    left: 15%;
 }
 </style>

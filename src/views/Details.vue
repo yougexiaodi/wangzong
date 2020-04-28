@@ -12,7 +12,11 @@
             <cell title="支付方式">
                 <x-button type="warn" mini>中国银行信用卡</x-button>
             </cell>
-            <cell title="活动细则"></cell>
+            <cell title="活动细则">
+                  <x-button type="warn" mini v-if="dataInfo.ins_id && dataInfo.ins_id!=='0'" @click.native="showRule">
+                    兑换流程
+                </x-button>
+            </cell>
         </group>
         <div class="content" v-html="dataInfo.detail"></div>
         <confirm
@@ -30,9 +34,12 @@
                 立即抢购
             </x-button>
         </box>
+         <l-goods-rule :show='show' @close='show=false' :contents='contents'></l-goods-rule>
     </div>
 </template>
 <script>
+import LGoodsRule from '@/components/LGoodsRule'
+
     import {
         Group,
         Cell,
@@ -57,9 +64,11 @@
             XButton,
             Box,
             PopupPicker,
+            LGoodsRule
         },
         data() {
             return {
+                show:false,
                 pid: sessionStorage.getItem('pid'),
                 id: this.$route.query.id,
                 selectPay: [{
@@ -87,7 +96,8 @@
                 buyUrl: '/api/gdekhback/phone/hebei_lifecycle_boc_pay',
                 ylUrl:'/api/gdekhback/phone/hebei_unionpay',
                 dataInfo: {},
-                aid:null
+                aid:null,
+                contents:''
             }
         },
         mounted() {
@@ -215,6 +225,19 @@
                     this.$vux.toast.show({text: '请选择支付方式', type: 'warn', width: '10em'})
                 }
             },
+            showRule(){
+                this.$http.get('/api/gdekhback/index/goods_instruction', {
+                    params: {
+                        ins_id: this.dataInfo.ins_id
+                    }
+                }).then((res) => {
+                    console.log(res)
+                    if (res.data.status === 0) {
+                        this.show = true
+                        this.contents = res.data.info.contents || ''
+                    }
+                })
+            }
         }
     }
 </script>
