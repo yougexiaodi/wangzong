@@ -10,7 +10,7 @@
                             <div class="cover-img">
                                 <img :src="items.list_img_long" alt="">
                             </div>
-                            <span>{{items.tags}}</span>
+                            <span>{{items.intro}}</span>
                             <h5>{{items.name}}</h5>
                             <i class="btn" @click="goodsId=items.id" :class="{'active':goodsId==items.id}"></i>
                         </div>
