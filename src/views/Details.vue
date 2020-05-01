@@ -3,6 +3,9 @@
         <div class="details_banner">
             <img :src="dataInfo.detail_img" alt="">
         </div>
+        <group v-if="$route.query.id=='3912'">
+            <x-input title="充值手机号码：" placeholder='请输入充值手机号码'  v-model="consignee_tel"></x-input>
+        </group>
         <group>
             <!-- <cell title="剩余数量">{{Math.ceil(dataInfo.now_num / 10)}} 张</cell> -->
             <cell title="剩余数量">{{dataInfo.now_num}} 张</cell>
@@ -97,7 +100,8 @@ import LGoodsRule from '@/components/LGoodsRule'
                 ylUrl:'/api/gdekhback/phone/hebei_unionpay',
                 dataInfo: {},
                 aid:null,
-                contents:''
+                contents:'',
+                consignee_tel:''
             }
         },
         mounted() {
@@ -126,6 +130,17 @@ import LGoodsRule from '@/components/LGoodsRule'
                 })
             },
             getLoginState() {
+                if(this.$route.query.id == '3912'&&this.consignee_tel!=''){
+                    if(!(/^1[3456789]\d{9}$/.test(this.consignee_tel))){
+                        this.$vux.toast.show({
+                                text: '请填写正确手机号',
+                                type: "warn",
+                                width: "5rem",
+                                time: "3000"
+                            });
+                        return false; 
+                    }
+                }
                 this.btnLoading = true;
                 this.btnDisabled = true;
                 isLogin(this.pid).then(res => {
@@ -214,6 +229,7 @@ import LGoodsRule from '@/components/LGoodsRule'
                                 'mid=' + _this.dataInfo.mid + '&' +
                                 'gid=' + _this.id + '&' +
                                 'code_type=' + _this.$route.query.code_type + '&' +
+                                'consignee_tel=' + _this.consignee_tel + '&' +
                                 'back_url=' + encodeURIComponent('/boc/hebei_lifecycle/#/details?' +
                                     'id=' + _this.id + '&' +
                                     'code_type=' + _this.$route.query.code_type
