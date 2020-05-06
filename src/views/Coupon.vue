@@ -24,8 +24,14 @@
                     <flexbox-item>
                         <div class="bold">{{item.name}}</div>
                         <template v-if="item.pay_state === '1'">
-                            <div v-if="[401,400,399,398,434].indexOf(Number(item.aid))!==-1" style="font-size: 12px;">券码:&nbsp;{{item.code}}</div>
-                            <div style="font-size: 12px;" v-if="[401,400,399,398,434].indexOf(Number(item.aid))!==-1 && item.passwd">卡密:&nbsp;{{item.passwd}}</div>
+                            <div v-if="[401,400,399,398,432,433,434,435].indexOf(Number(item.aid))!==-1" style="font-size: 12px;">
+                                
+                                <a v-if="item.code.indexOf('https')>-1||item.code.indexOf('http')>-1" :href="item.code">点击查看</a>
+                                <span v-else>
+                                    券码:&nbsp;{{item.code}}
+                                </span>
+                                </div>
+                            <div style="font-size: 12px;" v-if="[401,400,399,398,432,433,434,435].indexOf(Number(item.aid))!==-1 && item.passwd">卡密:&nbsp;{{item.passwd}}</div>
                             <div class="order-vtime">有效期至:{{item.vtime}}</div>
                             <flexbox justify="space-between">
                                 <div class="order-special-price">已经享受{{getSpecialPrice(item)}}元优惠</div>
