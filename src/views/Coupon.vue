@@ -32,6 +32,7 @@
                                 </span>
                                 </div>
                             <div style="font-size: 12px;" v-if="[401,400,399,398,432,433,434,435].indexOf(Number(item.aid))!==-1 && item.passwd">卡密:&nbsp;{{item.passwd}}</div>
+                            <div class="qrcode" @click="qrcode(item)" v-if="item.gid == '3925'">点击生成二维码</div>
                             <div class="order-vtime">有效期至:{{item.vtime}}</div>
                             <flexbox justify="space-between">
                                 <div class="order-special-price">已经享受{{getSpecialPrice(item)}}元优惠</div>
@@ -55,6 +56,9 @@
                 </flexbox>
             </li>
         </ul>
+        <div class="qrcode-model" v-if="showQRcode" @click="showQRcode=false">
+            <div id="qrcode" ></div>
+        </div>
     </div>
 </template>
 <script type="text/babel">
@@ -75,12 +79,13 @@
     } from 'vux'
     import LBarCode from "../components/LBarCode";
     import {isLogin} from "../utils/login";
-
+    import QRCode  from "qrcodejs2"
     export default {
         directives: {
             TransferDom
         },
         components: {
+            QRCode,
             LBarCode,
             Group,
             Cell,
@@ -97,6 +102,7 @@
         },
         data() {
             return {
+                code:'111',
                 pid: sessionStorage.getItem('pid'),
                 loginState: '/api/gdekhback/phone/is_login',
                 dataDetailsUrl: '/api/gdekhback/phone/order_list_all',
@@ -104,6 +110,7 @@
                 buyUrl: '/api/gdekhback/phone/hebei_lifecycle_boc_pay',
                 couponList: [],
                 tabIndex: "0",
+                showQRcode:false
             }
         },
         computed: {
@@ -131,6 +138,23 @@
             this.$vux.loading.hide();
         },
         methods: {
+            //  生成二维码
+            qrcode (item) {
+                this.showQRcode = true;
+                this.code = item.code;
+                let that = this;
+                this.$nextTick(()=>{
+                     let qrcode = new QRCode('qrcode', {
+                            width: 124,
+                            height: 124,        // 高度
+                            text:  this.code,   // 二维码内容
+                            // render: 'canvas' ,   // 设置渲染方式（有两种方式 table和canvas，默认是canvas）
+                            // background: '#f0f',   // 背景色
+                            // foreground: '#ff0'    // 前景色
+                        })
+                })
+               
+            },
             getLoginState() {
                 this.$vux.loading.show({text: '加载中...'});
                 isLogin(this.pid).then(res => {
@@ -304,5 +328,26 @@
 
             background-color: #ffffff;
         }
+    }
+    .qrcode-model{
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0,0,0,0.9);
+        z-index: 999;
+    }
+    #qrcode{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        padding: 10px;
+        background: #ffffff;
+    }
+    .qrcode{
+        color: seagreen;
+        font-size: 12px;
     }
 </style>
