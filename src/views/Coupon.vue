@@ -32,7 +32,7 @@
                                 </span>
                                 </div>
                             <div style="font-size: 12px;" v-if="[401,400,399,398,432,433,434,435].indexOf(Number(item.aid))!==-1 && item.passwd">卡密:&nbsp;{{item.passwd}}</div>
-                            <div class="qrcode" @click="qrcode(item)" v-if="item.gid == '3925'">点击生成二维码</div>
+                            <div class="qrcode" @click="qrcode(item)" v-if="item.gid == '3925'&&item.code!==''">点击生成二维码</div>
                             <div class="order-vtime">有效期至:{{item.vtime}}</div>
                             <flexbox justify="space-between">
                                 <div class="order-special-price">已经享受{{getSpecialPrice(item)}}元优惠</div>
