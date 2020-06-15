@@ -297,13 +297,13 @@
     }
 
     .jckp {
-        /deep/ .vux-flexbox .vux-flexbox-item:first-child {
+        /deep/ .vux-flexbox .vux-flexbox-item {
             flex: 0 0 100% !important;
         }
 
-        /deep/ .vux-flexbox-item:last-child.vux-flexbox-item:nth-child(odd) {
-            flex: 0 0 48.5% !important;
-        }
+        // /deep/ .vux-flexbox-item:last-child.vux-flexbox-item:nth-child(odd) {
+        //     flex: 0 0 48.5% !important;
+        // }
     }
 
 
