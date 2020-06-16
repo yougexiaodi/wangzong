@@ -32,6 +32,15 @@ export default {
     },
     mounted(){
         this.getgoodlist()
+        if(window._czc){
+            window._czc.push(["_trackEvent",'福利嗨翻天','进入','','','']);
+        }else{
+             setTimeout(function(){
+               if( window._czc){
+                  window._czc.push(["_trackEvent",'福利嗨翻天','进入','','','']);
+              }
+            }, 1000);
+        }
     },
     methods:{
         toDetail(){
