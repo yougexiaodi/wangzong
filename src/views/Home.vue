@@ -1,7 +1,15 @@
 <template>
     <div class="gd_home">
-        <div v-if="activityListBanner.activity_list && activityListBanner.activity_list.length>0">
+        <!-- <div v-if="activityListBanner.activity_list && activityListBanner.activity_list.length>0">
             <l-swiper3 :list="activityListBanner.activity_list" @item-click="go"></l-swiper3>
+        </div> -->
+        <div class="activity-type activity-type-2 jckp"
+             v-if="activityListBanner.activity_list && activityListBanner.activity_list.length>0">
+            <flexbox :gutter="0" justify="space-between" wrap="wrap">
+                <flexbox-item :span="0.97/2" v-for="item in activityListBanner.activity_list" :key="item.id">
+                    <img :src="item.img_url" alt="" style="width: 100%;border-radius: 1vw;" @click="go(item)">
+                </flexbox-item>
+            </flexbox>
         </div>
         <div class="activity-type activity-type-1"
              v-if="activityListJCKP.activity_list && activityListJCKP.activity_list.length>0">
@@ -54,7 +62,6 @@
         </div>
         <div class="activity-type activity-type-2 jckp"
              v-if="activityListJNCXHD.activity_list && activityListJNCXHD.activity_list.length>0">
-            <div class="activity-type-title">{{activityListJNCXHD.c_name}}</div>
             <flexbox :gutter="0" justify="space-between" wrap="wrap">
                 <flexbox-item :span="0.97/2" v-for="item in activityListJNCXHD.activity_list" :key="item.id">
                     <img :src="item.img_url" alt="" style="width: 100%;border-radius: 1vw;" @click="go(item)">
@@ -63,7 +70,6 @@
         </div>
         <div class="activity-type activity-type-2"
              v-if="activityListWLBK.activity_list && activityListWLBK.activity_list.length>0">
-            <div class="activity-type-title">{{activityListWLBK.c_name}}</div>
             <flexbox :gutter="0" justify="space-between" wrap="wrap">
                 <flexbox-item :span="0.97/2" v-for="item in activityListWLBK.activity_list" :key="item.id">
                     <img :src="item.img_url" alt="" style="width: 100%;border-radius: 1vw;" @click="go(item)">
@@ -72,7 +78,6 @@
         </div>
         <div class="activity-type activity-type-2"
              v-if="activityList109.activity_list && activityList109.activity_list.length>0">
-            <div class="activity-type-title">{{activityList109.c_name}}</div>
             <flexbox :gutter="0" justify="space-between" wrap="wrap">
                 <flexbox-item :span="0.97/2" v-for="item in activityList109.activity_list" :key="item.id">
                     <img :src="item.img_url" alt="" style="width: 100%;border-radius: 1vw;" @click="go(item)">
@@ -81,7 +86,6 @@
         </div>
         <div class="activity-type activity-type-2"
              v-if="activityList110.activity_list && activityList110.activity_list.length>0">
-            <div class="activity-type-title">{{activityList110.c_name}}</div>
             <flexbox :gutter="0" justify="space-between" wrap="wrap">
                 <flexbox-item :span="0.97/2" v-for="item in activityList110.activity_list" :key="item.id">
                     <img :src="item.img_url" alt="" style="width: 100%;border-radius: 1vw;" @click="go(item)">
@@ -90,7 +94,6 @@
         </div>
         <div class="activity-type activity-type-2"
              v-if="activityList111.activity_list && activityList111.activity_list.length>0">
-            <div class="activity-type-title">{{activityList111.c_name}}</div>
             <flexbox :gutter="0" justify="space-between" wrap="wrap">
                 <flexbox-item :span="0.97/2" v-for="item in activityList111.activity_list" :key="item.id">
                     <img :src="item.img_url" alt="" style="width: 100%;border-radius: 1vw;" @click="go(item)">
@@ -99,7 +102,6 @@
         </div>
         <div class="activity-type activity-type-2"
              v-if="activityList112.activity_list && activityList112.activity_list.length>0">
-            <div class="activity-type-title">{{activityList112.c_name}}</div>
             <flexbox :gutter="0" justify="space-between" wrap="wrap">
                 <flexbox-item :span="0.97/2" v-for="item in activityList112.activity_list" :key="item.id">
                     <img :src="item.img_url" alt="" style="width: 100%;border-radius: 1vw;" @click="go(item)">
@@ -227,7 +229,7 @@
 
     .activity-type {
         border-bottom: #f3f5f7 solid 1.6vw;
-        padding: 0 4vw 2vw;
+        padding: 2vw 4vw 2vw;
 
         .activity-type-title {
             padding: 3vw 0;
