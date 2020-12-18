@@ -5,7 +5,7 @@
         class="swiper-demo-img"
         v-for="(item, index) in activityList254.activity_list"
         :key="index"
-        @click="go(item)"
+        @click.native="go(item)"
       >
         <img style="width: 100%" :src="item.img_url" />
       </swiper-item>
