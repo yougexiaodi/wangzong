@@ -243,7 +243,7 @@ export default {
         width: 49%;
       }
 
-      .item:last-child {
+      .item:first-child {
         width: 100%;
       }
     }
