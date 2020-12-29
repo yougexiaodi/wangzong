@@ -45,6 +45,22 @@
     <div
       class="activity_wrap"
       v-if="
+        activityList262.activity_list &&
+        activityList262.activity_list.length > 0
+      "
+    >
+      <div class="c_name">{{ activityList262.c_name }}</div>
+      <div
+        class="item"
+        v-for="item in activityList262.activity_list"
+        :key="item.id"
+      >
+        <img :src="item.img_url" @click="go(item)" />
+      </div>
+    </div>
+    <div
+      class="activity_wrap"
+      v-if="
         activityList257.activity_list &&
         activityList257.activity_list.length > 0
       "
@@ -146,6 +162,7 @@ export default {
       activityList254: {},
       activityList255: {},
       activityList256: {},
+      activityList262: {},
       activityList257: {},
       activityList258: {},
       activityList259: {},
@@ -175,6 +192,7 @@ export default {
             this.activityList254 = res.data.data[254] || {};
             this.activityList255 = res.data.data[255] || {};
             this.activityList256 = res.data.data[256] || {};
+            this.activityList262 = res.data.data[262] || {};
             this.activityList257 = res.data.data[257] || {};
             this.activityList258 = res.data.data[258] || {};
             this.activityList259 = res.data.data[259] || {};
