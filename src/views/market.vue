@@ -20,6 +20,7 @@
         </div>
       </li>
     </ul>
+    <p class="tips" v-if="list.length <= 0">暂无可参与活动~</p>
   </div>
 </template>
 <script>
@@ -126,5 +127,11 @@ export default {
     object-fit: fill;
     height: 100%;
   }
+}
+.tips {
+  font-size: 16px;
+  color: red;
+  text-align: center;
+  margin-top: 40px;
 }
 </style>
