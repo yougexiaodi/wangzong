@@ -96,5 +96,12 @@ export default new Router({
                 hiddenFooterMenu: true
             }
         },
+        { // 疫情专区商圈列表
+            path: '/market',
+            component: () => import('../views/market'),
+            meta: {
+                hiddenFooterMenu: true
+            }
+        },
     ]
 })
