@@ -10,6 +10,23 @@
         <img style="width: 100%" :src="item.img_url" />
       </swiper-item>
     </swiper>
+    <!-- 幸好等到你 -->
+    <div
+      class="activity_wrap"
+      v-if="
+        activityList302.activity_list &&
+        activityList302.activity_list.length > 0
+      "
+    >
+      <div class="c_name">{{ activityList302.c_name }}</div>
+      <div
+        class="item"
+        v-for="item in activityList302.activity_list"
+        :key="item.id"
+      >
+        <img :src="item.img_url" @click="go(item)" />
+      </div>
+    </div>
     <div
       class="activity_wrap"
       v-if="
@@ -166,6 +183,7 @@ export default {
       activityList257: {},
       activityList258: {},
       activityList259: {},
+      activityList302: {},
       getDataUrl: "/api/gdekhback/phone/activity_list",
     };
   },
@@ -196,6 +214,7 @@ export default {
             this.activityList257 = res.data.data[257] || {};
             this.activityList258 = res.data.data[258] || {};
             this.activityList259 = res.data.data[259] || {};
+            this.activityList302 = res.data.data[302] || {};
           }
         });
     },
