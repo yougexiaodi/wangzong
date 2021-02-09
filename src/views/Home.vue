@@ -27,6 +27,24 @@
         <img :src="item.img_url" @click="go(item)" />
       </div>
     </div>
+    <!-- 2 -->
+    <div
+      class="activity_wrap"
+      v-if="
+        activityList306.activity_list &&
+        activityList306.activity_list.length > 0
+      "
+    >
+      <div class="c_name">{{ activityList306.c_name }}</div>
+      <div
+        class="item"
+        v-for="item in activityList306.activity_list"
+        :key="item.id"
+      >
+        <img :src="item.img_url" @click="go(item)" />
+      </div>
+    </div>
+    <!-- 3 -->
     <div
       class="activity_wrap"
       v-if="
@@ -43,6 +61,7 @@
         <img :src="item.img_url" @click="go(item)" />
       </div>
     </div>
+    <!-- 4 -->
     <div
       class="activity_wrap"
       v-if="
@@ -59,6 +78,8 @@
         <img :src="item.img_url" @click="go(item)" />
       </div>
     </div>
+    <!-- 5 -->
+
     <div
       class="activity_wrap"
       v-if="
@@ -70,6 +91,56 @@
       <div
         class="item"
         v-for="item in activityList262.activity_list"
+        :key="item.id"
+      >
+        <img :src="item.img_url" @click="go(item)" />
+      </div>
+    </div>
+    <!-- 6 -->
+    <div
+      class="activity_wrap"
+      v-if="
+        activityList307.activity_list &&
+        activityList307.activity_list.length > 0
+      "
+    >
+      <div class="c_name">{{ activityList307.c_name }}</div>
+      <div
+        class="item"
+        v-for="item in activityList307.activity_list"
+        :key="item.id"
+      >
+        <img :src="item.img_url" @click="go(item)" />
+      </div>
+    </div>
+    <!-- 7 -->
+    <div
+      class="activity_wrap"
+      v-if="
+        activityList308.activity_list &&
+        activityList308.activity_list.length > 0
+      "
+    >
+      <div class="c_name">{{ activityList308.c_name }}</div>
+      <div
+        class="item"
+        v-for="item in activityList308.activity_list"
+        :key="item.id"
+      >
+        <img :src="item.img_url" @click="go(item)" />
+      </div>
+    </div>
+    <div
+      class="activity_wrap"
+      v-if="
+        activityList309.activity_list &&
+        activityList309.activity_list.length > 0
+      "
+    >
+      <div class="c_name">{{ activityList309.c_name }}</div>
+      <div
+        class="item"
+        v-for="item in activityList309.activity_list"
         :key="item.id"
       >
         <img :src="item.img_url" @click="go(item)" />
@@ -91,7 +162,7 @@
         <img :src="item.img_url" @click="go(item)" />
       </div>
     </div>
-    <div
+    <!-- <div
       class="activity_wrap"
       v-if="
         activityList258.activity_list &&
@@ -106,7 +177,7 @@
       >
         <img :src="item.img_url" @click="go(item)" />
       </div>
-    </div>
+    </div> -->
     <div
       class="activity_wrap"
       v-if="
@@ -184,6 +255,10 @@ export default {
       activityList258: {},
       activityList259: {},
       activityList302: {},
+      activityList306: {},
+      activityList307: {},
+      activityList308: {},
+      activityList309: {},
       getDataUrl: "/api/gdekhback/phone/activity_list",
     };
   },
@@ -215,6 +290,10 @@ export default {
             this.activityList258 = res.data.data[258] || {};
             this.activityList259 = res.data.data[259] || {};
             this.activityList302 = res.data.data[302] || {};
+            this.activityList306 = res.data.data[306] || {};
+            this.activityList307 = res.data.data[307] || {};
+            this.activityList308 = res.data.data[308] || {};
+            this.activityList309 = res.data.data[309] || {};
           }
         });
     },
