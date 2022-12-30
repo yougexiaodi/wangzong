@@ -58,7 +58,7 @@ module.exports = {
         // Paths
         assetsRoot: path.resolve(__dirname, '../dist'),
         assetsSubDirectory: 'static',
-        assetsPublicPath: '/boc/hebei_lifecycle/',
+        assetsPublicPath: './',
 
         /**
          * Source Maps
